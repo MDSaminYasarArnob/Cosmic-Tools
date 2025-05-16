@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cosmic Tools Image Compressor: Optimize images with adjustable compression levels. Reduce file size without losing quality.">
+    <meta name="keywords" content="image compressor, optimize images, reduce image size, free image compressor, cosmic tools">
+    <meta name="author" content="Cosmic Tools">
+    <meta name="robots" content="index, follow">
+    <title>Cosmic Tools - Image Compressor 📉</title>
+    <!-- Open Graph for Social Media -->
+    <meta property="og:title" content="Cosmic Tools - Image Compressor">
+    <meta property="og:description" content="Compress images online with adjustable quality settings. Fast, free, and easy to use.">
+    <meta property="og:image" content="https://yourdomain.com/og-image.jpg">
+    <meta property="og:url" content="https://yourdomain.com/compressor">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+            crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #1a1a3d, #2c2c54);
+            color: #ffffff;
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+        }
+        h1, h2, h3, button {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .starry-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            opacity: 0.3;
+            z-index: -1;
+        }
+        .dragover {
+            border: 2px dashed #4ecdc4;
+            background-color: rgba(78, 205, 196, 0.1);
+        }
+        .progress-bar {
+            height: 8px;
+            background-color: #2c2c54;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            transition: width 0.3s ease-in-out;
+        }
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            font-weight: 800;
+        }
+        .gradient-button {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            transition: background 0.3s ease;
+        }
+        .gradient-button:hover {
+            background: linear-gradient(45deg, #4ecdc4, #ff6b6b);
+        }
+    </style>
+</head>
+<body class="font-extrabold">
+    <div class="starry-bg"></div>
+    <header class="bg-opacity-90 bg-gray-900 shadow-lg">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold text-white">Cosmic Tools - Image Compressor 📉</h1>
+            <p class="mt-2 text-lg text-gray-300">Optimize your images with adjustable compression levels</p>
+        </div>
+    </header>
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <!-- Top Banner Ad -->
+        <div class="mb-6">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="YYYYYYYYYY"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        <div class="flex flex-col lg:flex-row gap-6">
+            <div class="flex-1 bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold text-white mb-4">Compress Your Image 🚀</h2>
+                <div class="mb-4">
+                    <label class="block text-base font-bold text-gray-300 mb-2">Select Image</label>
+                    <div id="dropZone" class="border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:bg-gray-700">
+                        <p class="text-gray-400 text-lg">Drag and drop your image here or click to select 🖼️</p>
+                        <input type="file" id="imageInput" accept="image/*" class="hidden">
+                    </div>
+                    <p id="errorMessage" class="error-message hidden"></p>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-base font-bold text-gray-300">Preview</label>
+                    <img id="previewImage" class="mt-2 max-w-full h-auto rounded-lg hidden" alt="Image Preview">
+                </div>
+                <div class="mb-4">
+                    <label for="compressionLevel" class="block text-base font-bold text-gray-300">Compression Level</label>
+                    <select id="compressionLevel" class="mt-1 block w-full py-2 px-3 border border-gray-600 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-4ecdc4 text-lg font-bold">
+                        <option value="0.9">Low (High Quality)</option>
+                        <option value="0.7" selected>Medium (Balanced)</option>
+                        <option value="0.5">High (Smaller Size)</option>
+                    </select>
+                </div>
+                <button id="compressButton" class="w-full py-3 px-4 text-lg text-white rounded-md gradient-button font-bold disabled:opacity-50" disabled>Compress Image 📉</button>
+                <div id="progressContainer" class="mt-4 hidden">
+                    <p class="text-base text-gray-300 mb-2 font-bold">Compressing...</p>
+                    <div class="progress-bar">
+                        <div id="progressBar" class="progress-bar-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div id="resultSection" class="mt-6 hidden">
+                    <h3 class="text-xl font-bold text-white">Compression Result 🎉</h3>
+                    <p id="originalSize" class="text-base text-gray-300 font-bold"></p>
+                    <p id="compressedSize" class="text-base text-gray-300 font-bold"></p>
+                    <p id="sizeReduction" class="text-base text-gray-300 font-bold"></p>
+                    <div class="mt-4">
+                        <img id="compressedImage" class="max-w-full h-auto rounded-lg shadow" alt="Compressed Image">
+                    </div>
+                    <a id="downloadLink" href="#" class="mt-4 inline-block py-3 px-4 text-lg text-white rounded-md gradient-button font-bold">Download Compressed Image ⬇️</a>
+                </div>
+            </div>
+            <!-- Sidebar Ad (Desktop Only) -->
+            <div class="hidden lg:block lg:w-1/3">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                     data-ad-slot="ZZZZZZZZZZ"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-gray-900 bg-opacity-90 mt-6">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <p class="text-gray-300 text-lg font-bold">Copyright © 2025 Cosmic Tools. All rights reserved.</p>
+            <nav class="mt-4 flex space-x-4">
+                <a href="/privacy" class="text-gray-300 hover:text-white text-lg font-bold">Privacy Policy 📜</a>
+                <a href="/terms" class="text-gray-300 hover:text-white text-lg font-bold">Terms of Service 📝</a>
+            </nav>
+        </div>
+    </footer>
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const imageInput = document.getElementById('imageInput');
+        const compressButton = document.getElementById('compressButton');
+        const previewImage = document.getElementById('previewImage');
+        const errorMessage = document.getElementById('errorMessage');
+        const compressionLevel = document.getElementById('compressionLevel');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressBar = document.getElementById('progressBar');
+        const resultSection = document.getElementById('resultSection');
+        const originalSize = document.getElementById('originalSize');
+        const compressedSize = document.getElementById('compressedSize');
+        const sizeReduction = document.getElementById('sizeReduction');
+        const compressedImage = document.getElementById('compressedImage');
+        const downloadLink = document.getElementById('downloadLink');
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.remove('hidden');
+            setTimeout(() => errorMessage.classList.add('hidden'), 5000);
+        }
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+            console.log('Drag over');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+            console.log('Drag leave');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            console.log('Dropped files:', files);
+            if (files.length > 0 && files[0].type.startsWith('image/')) {
+                imageInput.files = files;
+                handleImageUpload(files[0]);
+            } else {
+                showError('Please drop an image file.');
+                console.log('Invalid file type');
+            }
+        });
+
+        dropZone.addEventListener('click', () => {
+            imageInput.click();
+            console.log('Drop zone clicked');
+        });
+
+        imageInput.addEventListener('change', () => {
+            if (imageInput.files.length > 0) {
+                handleImageUpload(imageInput.files[0]);
+            }
+        });
+
+        function handleImageUpload(file) {
+            if (!file.type.startsWith('image/')) {
+                showError('Please select an image file.');
+                imageInput.value = '';
+                compressButton.disabled = true;
+                previewImage.classList.add('hidden');
+                console.log('Invalid file type:', file.type);
+                return;
+            }
+            compressButton.disabled = false;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImage.src = e.target.result;
+                previewImage.classList.remove('hidden');
+                console.log('Preview image loaded:', file.name);
+            };
+            reader.onerror = () => {
+                showError('Error reading the image.');
+                console.log('FileReader error');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        compressButton.addEventListener('click', () => {
+            const file = imageInput.files[0];
+            if (!file) {
+                showError('Please select an image.');
+                console.log('No file selected');
+                return;
+            }
+
+            compressButton.disabled = true;
+            progressContainer.classList.remove('hidden');
+            resultSection.classList.add('hidden');
+
+            const img = new Image();
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                img.src = e.target.result;
+                console.log('Image loaded for compression');
+            };
+
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 10;
+                    progressBar.style.width = `${progress}%`;
+                    if (progress >= 100) clearInterval(interval);
+                }, 200);
+
+                const quality = parseFloat(compressionLevel.value);
+                const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+                if (!compressedDataUrl || compressedDataUrl === 'data:,') {
+                    showError('Error generating compressed image.');
+                    console.log('Invalid canvas output');
+                    compressButton.disabled = false;
+                    progressContainer.classList.add('hidden');
+                    return;
+                }
+
+                const originalSizeBytes = file.size;
+                const compressedSizeBytes = Math.round((compressedDataUrl.length * 3) / 4);
+
+                setTimeout(() => {
+                    progressContainer.classList.add('hidden');
+                    progressBar.style.width = '0%';
+                    resultSection.classList.remove('hidden');
+
+                    originalSize.textContent = `Original Size: ${(originalSizeBytes / 1024).toFixed(2)} KB`;
+                    compressedSize.textContent = `Compressed Size: ${(compressedSizeBytes / 1024).toFixed(2)} KB`;
+                    sizeReduction.textContent = `Size Reduction: ${(((originalSizeBytes - compressedSizeBytes) / originalSizeBytes) * 100).toFixed(2)}%`;
+
+                    compressedImage.src = compressedDataUrl;
+                    downloadLink.href = compressedDataUrl;
+                    downloadLink.download = `compressed-image-${Date.now()}.jpg`;
+
+                    downloadLink.addEventListener('click', (e) => {
+                        if (!downloadLink.href) {
+                            e.preventDefault();
+                            showError('Download failed. Try again.');
+                            console.log('Download link empty');
+                        }
+                    }, { once: true });
+
+                    compressButton.disabled = false;
+                    console.log('Compression complete, download ready:', downloadLink.download);
+                }, 2000);
+            };
+
+            img.onerror = () => {
+                showError('Error loading the image.');
+                console.log('Image load error');
+                compressButton.disabled = false;
+                progressContainer.classList.add('hidden');
+            };
+
+            reader.readAsDataURL(file);
+        });
+    </script>
+</body>
+</html>
