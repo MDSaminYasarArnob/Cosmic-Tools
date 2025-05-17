@@ -3,25 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Cosmic Tools: Free online image manipulation tools including Compressor, Upscaler, Format Converter. Optimize and enhance images with ease." />
-  <meta name="keywords" content="image manipulation, image compressor, image upscaler, image converter, cosmic tools" />
+  <meta name="description" content="Cosmic Tools: Free online tools for image compression, format conversion, upscaling, and PDF merging." />
+  <meta name="keywords" content="image compressor, image converter, image upscaler, PDF merger, free online tools" />
   <meta name="author" content="Cosmic Tools" />
   <meta name="robots" content="index, follow" />
-  <title>Cosmic Tools - Free Image Manipulation Tools 🌌</title>
-  <meta property="og:title" content="Cosmic Tools - Free Image Manipulation Tools" />
-  <meta property="og:description" content="Explore free online tools to compress, upscale, and convert images. Fast, easy, and cosmic!" />
+  <title>Cosmic Tools - Free Online Image & PDF Tools 🌌</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cosmic Tools - Image Compressor, PDF Merger & Format Converter" />
+  <meta property="og:description" content="Discover free tools to compress images, convert formats, upscale quality, and merge PDFs easily." />
   <meta property="og:image" content="https://yourdomain.com/og-image.jpg" />
   <meta property="og:url" content="https://yourdomain.com" />
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="/favicon.png" />
+
+  <!-- Fonts & Tailwind -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@800&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
   <style>
     body {
       background: linear-gradient(to bottom, #1a1a3d, #2c2c54);
       color: #ffffff;
       font-family: 'Montserrat', sans-serif;
-      position: relative;
     }
     h1, h2, h3, button {
       font-family: 'Orbitron', sans-serif;
@@ -38,86 +46,75 @@
     }
     .gradient-button {
       background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, transform 0.2s ease;
     }
     .gradient-button:hover {
       background: linear-gradient(45deg, #4ecdc4, #ff6b6b);
+      transform: scale(1.05);
     }
     .tool-card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .tool-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 15px rgba(78, 205, 196, 0.2);
+      box-shadow: 0 10px 20px rgba(78, 205, 196, 0.3);
     }
   </style>
 </head>
-<body class="font-extrabold">
+
+<body class="relative font-extrabold">
   <div class="starry-bg"></div>
 
-  <!-- Header -->
   <header class="bg-opacity-90 bg-gray-900 shadow-lg">
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
       <h1 class="text-4xl font-bold text-white">Cosmic Tools 🌌</h1>
-      <p class="mt-2 text-lg text-gray-300">Your free suite for image manipulation</p>
+      <p class="mt-2 text-lg text-gray-300">Free online tools for image and PDF processing</p>
     </div>
   </header>
 
-  <!-- Main Content -->
   <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-    
     <!-- Top Ad -->
     <div class="mb-6">
       <ins class="adsbygoogle"
            style="display:block"
            data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-           data-ad-slot="1111111111"
+           data-ad-slot="YYYYYYYYYY"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <div class="flex flex-col lg:flex-row gap-6">
-      <div class="flex-1">
-        <section class="bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg mb-6">
-          <h2 class="text-2xl font-bold text-white mb-4">Welcome to Cosmic Tools 🚀</h2>
-          <p class="text-base text-gray-300 mb-4 font-bold">
-            Discover our free, powerful tools to manipulate images with ease. Whether you need to compress, upscale, or convert images, Cosmic Tools has you covered with a stellar user experience.
-          </p>
-        </section>
+    <h2 class="text-3xl font-bold text-white mb-6">Our Tools 🚀</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        <!-- Tools -->
-        <section class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <a href="/Cosmic-Tools/image-compressor.html" class="tool-card bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg block hover:no-underline">
-            <h3 class="text-xl font-bold text-white mb-2">Image Compressor 📉</h3>
-            <p class="text-base text-gray-300 mb-4 font-bold">Reduce image file size without sacrificing quality. Perfect for web optimization.</p>
-            <span class="inline-block py-3 px-4 text-lg text-white rounded-md gradient-button font-bold">Try Compressor</span>
-          </a>
-
-          <a href="/Cosmic-Tools/image-upscaler.html" class="tool-card bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg block hover:no-underline">
-            <h3 class="text-xl font-bold text-white mb-2">Image Upscaler 🔍</h3>
-            <p class="text-base text-gray-300 mb-4 font-bold">Enhance image resolution with adjustable upscale levels. Ideal for detailed visuals.</p>
-            <span class="inline-block py-3 px-4 text-lg text-white rounded-md gradient-button font-bold">Try Upscaler</span>
-          </a>
-
-          <a href="/Cosmic-Tools/image-format-converter.html" class="tool-card bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg block hover:no-underline">
-            <h3 class="text-xl font-bold text-white mb-2">Image Format Converter 🔄</h3>
-            <p class="text-base text-gray-300 mb-4 font-bold">Convert images to PNG, JPEG, or WebP with customizable quality settings.</p>
-            <span class="inline-block py-3 px-4 text-lg text-white rounded-md gradient-button font-bold">Try Converter</span>
-          </a>
-        </section>
+      <!-- PDF Merger -->
+      <div class="tool-card bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg">
+        <h3 class="text-2xl font-bold text-white mb-4">PDF Merger 🔗</h3>
+        <p class="text-base text-gray-300 mb-4 font-bold">Combine multiple PDFs into one. Reorder easily and control image quality.</p>
+        <a href="/Cosmic-Tools/pdf-merger.html" class="inline-block py-3 px-4 text-lg text-white rounded-md gradient-button font-bold">Try PDF Merger</a>
       </div>
 
-      <!-- Sidebar Ad (visible on desktop) -->
-      <div class="hidden lg:block lg:w-1/3">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-             data-ad-slot="2222222222"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      <!-- Image Compressor -->
+      <div class="tool-card bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg">
+        <h3 class="text-2xl font-bold text-white mb-4">Image Compressor 🗜️</h3>
+        <p class="text-base text-gray-300 mb-4 font-bold">Reduce image size without losing quality. Instant compression and download.</p>
+        <a href="/Cosmic-Tools/image-compressor.html" class="inline-block py-3 px-4 text-lg text-white rounded-md gradient-button font-bold">Try Image Compressor</a>
       </div>
+
+      <!-- Image Format Converter -->
+      <div class="tool-card bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg">
+        <h3 class="text-2xl font-bold text-white mb-4">Image Format Converter 🔄</h3>
+        <p class="text-base text-gray-300 mb-4 font-bold">Convert images between PNG, JPEG, WEBP, and more. Fast & easy.</p>
+        <a href="/Cosmic-Tools/image-format-converter.html" class="inline-block py-3 px-4 text-lg text-white rounded-md gradient-button font-bold">Try Format Converter</a>
+      </div>
+
+      <!-- Image Upscaler -->
+      <div class="tool-card bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg">
+        <h3 class="text-2xl font-bold text-white mb-4">Image Upscaler 🔍</h3>
+        <p class="text-base text-gray-300 mb-4 font-bold">Enhance image resolution with AI-powered upscaling tools.</p>
+        <a href="/Cosmic-Tools/image-upscaler.html" class="inline-block py-3 px-4 text-lg text-white rounded-md gradient-button font-bold">Try Image Upscaler</a>
+      </div>
+
     </div>
 
     <!-- Bottom Ad -->
@@ -125,18 +122,16 @@
       <ins class="adsbygoogle"
            style="display:block"
            data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-           data-ad-slot="3333333333"
+           data-ad-slot="ZZZZZZZZZZ"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
-
   </main>
 
-  <!-- Footer -->
   <footer class="bg-gray-900 bg-opacity-90 mt-6">
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-      <p class="text-gray-300 text-lg font-bold">Copyright © 2025 Cosmic Tools. All rights reserved.</p>
+      <p class="text-gray-300 text-lg font-bold">© 2025 Cosmic Tools. All rights reserved.</p>
       <nav class="mt-4 flex space-x-4">
         <a href="/privacy" class="text-gray-300 hover:text-white text-lg font-bold">Privacy Policy 📜</a>
         <a href="/terms" class="text-gray-300 hover:text-white text-lg font-bold">Terms of Service 📝</a>
