@@ -29,11 +29,11 @@
             position: relative;
             font-family: 'Montserrat', sans-serif;
         }
-        h1, h2, h3, button {
+        h1, h2, h3, button, label, select {
             font-family: 'Orbitron', sans-serif;
         }
         .starry-bg {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -70,6 +70,19 @@
         .gradient-button:hover {
             background: linear-gradient(45deg, #4ecdc4, #ff6b6b);
         }
+        .custom-select {
+            background-color: #2c3e50;
+            border: 1px solid #4a5568;
+            color: #ffffff;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            width: 100%;
+        }
+        .custom-select:focus {
+            outline: none;
+            border-color: #4ecdc4;
+            box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.5);
+        }
     </style>
 </head>
 <body class="font-extrabold">
@@ -105,7 +118,7 @@
                 <h2 class="text-2xl font-bold text-white mb-4">Upscale Your Image 🌟</h2>
                 <div class="mb-4">
                     <label class="block text-base font-bold text-gray-300 mb-2">Select Image</label>
-                    <div id="dropZone" class="border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:bg-gray-700">
+                    <div id="dropZone" class="border-2 border-dashed border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:bg-gray-700 transition-colors">
                         <p class="text-gray-400 text-lg">Drag and drop your image here or click to select 🖼️</p>
                         <input type="file" id="imageInput" accept="image/*" class="hidden">
                     </div>
@@ -113,11 +126,11 @@
                 </div>
                 <div class="mb-4">
                     <label class="block text-base font-bold text-gray-300">Preview</label>
-                    <img id="previewImage" class="mt-2 max-w-full h-auto rounded-lg hidden" alt="Image Preview">
+                    <img id="previewImage" class="mt-2 max-w-full h-auto rounded-lg hidden shadow-md" alt="Image Preview">
                 </div>
                 <div class="mb-4">
                     <label for="upscaleLevel" class="block text-base font-bold text-gray-300">Upscale Level</label>
-                    <select id="upscaleLevel" class="mt-1 block w-full py-2 px-3 border border-gray-600 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-4ecdc4 text-lg font-bold">
+                    <select id="upscaleLevel" class="custom-select mt-1 text-lg">
                         <option value="2">2x (Double Size)</option>
                         <option value="3" selected>3x (Triple Size)</option>
                         <option value="4">4x (Quadruple Size)</option>
@@ -156,7 +169,7 @@
     </main>
     <footer class="bg-gray-900 bg-opacity-90 mt-6">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <p class="text-gray-300 text-lg font-bold">Copyright © 2025 Cosmic Tools. All rights reserved.</p>
+            <p class="text-gray-300 text-lg font-bold">Copyright © <span id="currentYear"></span> Cosmic Tools. All rights reserved.</p>
             <nav class="mt-4 flex space-x-4">
                 <a href="/privacy" class="text-gray-300 hover:text-white text-lg font-bold">Privacy Policy 📜</a>
                 <a href="/terms" class="text-gray-300 hover:text-white text-lg font-bold">Terms of Service 📝</a>
@@ -177,6 +190,9 @@
         const upscaledDimensions = document.getElementById('upscaledDimensions');
         const upscaledImage = document.getElementById('upscaledImage');
         const downloadLink = document.getElementById('downloadLink');
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        let originalFileName = 'image';
+
 
         function showError(message) {
             errorMessage.textContent = message;
@@ -187,31 +203,25 @@
         dropZone.addEventListener('dragover', (e) => {
             e.preventDefault();
             dropZone.classList.add('dragover');
-            console.log('Drag over');
         });
 
         dropZone.addEventListener('dragleave', () => {
             dropZone.classList.remove('dragover');
-            console.log('Drag leave');
         });
 
         dropZone.addEventListener('drop', (e) => {
             e.preventDefault();
             dropZone.classList.remove('dragover');
             const files = e.dataTransfer.files;
-            console.log('Dropped files:', files);
-            if (files.length > 0 && files[0].type.startsWith('image/')) {
-                imageInput.files = files;
+            if (files.length > 0) {
                 handleImageUpload(files[0]);
             } else {
                 showError('Please drop an image file.');
-                console.log('Invalid file type');
             }
         });
 
         dropZone.addEventListener('click', () => {
             imageInput.click();
-            console.log('Drop zone clicked');
         });
 
         imageInput.addEventListener('change', () => {
@@ -221,24 +231,40 @@
         });
 
         function handleImageUpload(file) {
-            if (!file.type.startsWith('image/')) {
-                showError('Please select an image file.');
-                imageInput.value = '';
-                upscaleButton.disabled = true;
-                previewImage.classList.add('hidden');
-                console.log('Invalid file type:', file.type);
-                return;
+            originalFileName = file.name.substring(0, file.name.lastIndexOf('.')) || 'image';
+            const fileTypeLower = file.type ? file.type.toLowerCase() : "";
+
+            if (!fileTypeLower.startsWith('image/')) {
+                // Fallback for files without proper MIME type but valid extension
+                const validExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.webp'];
+                const fileNameLower = file.name.toLowerCase();
+                let isValidExtension = false;
+                for (const ext of validExtensions) {
+                    if (fileNameLower.endsWith(ext)) {
+                        isValidExtension = true;
+                        break;
+                    }
+                }
+                if (!isValidExtension) {
+                    showError('Please select an image file (PNG, JPG, GIF, BMP, WebP). Type: ' + (fileTypeLower || 'unknown'));
+                    imageInput.value = '';
+                    upscaleButton.disabled = true;
+                    previewImage.classList.add('hidden');
+                    return;
+                }
             }
+
             upscaleButton.disabled = false;
+            errorMessage.classList.add('hidden');
             const reader = new FileReader();
             reader.onload = (e) => {
                 previewImage.src = e.target.result;
                 previewImage.classList.remove('hidden');
-                console.log('Preview image loaded:', file.name);
             };
             reader.onerror = () => {
                 showError('Error reading the image.');
-                console.log('FileReader error');
+                upscaleButton.disabled = true;
+                previewImage.classList.add('hidden');
             };
             reader.readAsDataURL(file);
         }
@@ -247,91 +273,117 @@
             const file = imageInput.files[0];
             if (!file) {
                 showError('Please select an image.');
-                console.log('No file selected');
                 return;
             }
 
             upscaleButton.disabled = true;
             progressContainer.classList.remove('hidden');
             resultSection.classList.add('hidden');
+            progressBar.style.width = '0%';
+
 
             const img = new Image();
             const reader = new FileReader();
 
             reader.onload = (e) => {
                 img.src = e.target.result;
-                console.log('Image loaded for upscaling');
             };
 
             img.onload = () => {
                 const canvas = document.createElement('canvas');
                 const ctx = canvas.getContext('2d');
                 const scale = parseFloat(upscaleLevel.value);
-                canvas.width = img.width * scale;
-                canvas.height = img.height * scale;
+                
+                const newWidth = Math.round(img.naturalWidth * scale);
+                const newHeight = Math.round(img.naturalHeight * scale);
 
-                // Basic nearest-neighbor upscaling (pixelated)
-                // For better quality, you'd need more complex algorithms (e.g., bicubic, Lanczos, or AI)
-                // which are generally too complex/slow for client-side JavaScript for large images.
-                // This example uses the browser's default image scaling when drawing, which is often bilinear.
-                ctx.imageSmoothingEnabled = false; // For sharper, pixelated look if desired for certain art styles
-                // ctx.imageSmoothingQuality = "high"; // Try for smoother results if browser supports
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-                let progress = 0;
-                const interval = setInterval(() => {
-                    progress += 10;
-                    progressBar.style.width = `${progress}%`;
-                    if (progress >= 100) clearInterval(interval);
-                }, 200);
-
-                const upscaledDataUrl = canvas.toDataURL('image/png'); // Or image/jpeg for lossy compression
-                if (!upscaledDataUrl || upscaledDataUrl === 'data:,') {
-                    showError('Error generating upscaled image. Canvas output might be too large or invalid.');
-                    console.log('Invalid canvas output or canvas too large. Dimensions:', canvas.width, 'x', canvas.height);
+                // Check for excessive dimensions to prevent browser crashes
+                const MAX_DIMENSION = 8000; // Max width or height (adjust as needed)
+                if (newWidth > MAX_DIMENSION || newHeight > MAX_DIMENSION) {
+                    showError(`Upscaled dimensions (${newWidth}x${newHeight}) are too large. Max allowed is ${MAX_DIMENSION}px.`);
                     upscaleButton.disabled = false;
                     progressContainer.classList.add('hidden');
                     progressBar.style.width = '0%';
                     return;
                 }
 
+                canvas.width = newWidth;
+                canvas.height = newHeight;
+
+                // The browser's default scaling (often bilinear) will be used here.
+                // For higher quality, more complex algorithms are needed (often server-side or via WebAssembly).
+                ctx.imageSmoothingEnabled = true; // Enable smoothing for upscaling
+                ctx.imageSmoothingQuality = "high"; // Request high quality if browser supports
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 10;
+                    progressBar.style.width = `${Math.min(progress, 100)}%`;
+                    if (progress >= 100) clearInterval(interval);
+                }, 100);
+
+                let upscaledDataUrl;
+                try {
+                    // Output as PNG to preserve quality after upscaling, or match original type if it was JPEG
+                    const outputMimeType = file.type === 'image/jpeg' ? 'image/jpeg' : 'image/png';
+                    const outputQuality = file.type === 'image/jpeg' ? 0.92 : undefined; // Good quality for JPEG
+                    upscaledDataUrl = canvas.toDataURL(outputMimeType, outputQuality);
+                } catch (e) {
+                    showError('Error generating upscaled image. Canvas output might be too large or an issue occurred.');
+                    console.error("toDataURL error:", e);
+                    clearInterval(interval);
+                    upscaleButton.disabled = false;
+                    progressContainer.classList.add('hidden');
+                    progressBar.style.width = '0%';
+                    return;
+                }
+
+
+                if (!upscaledDataUrl || upscaledDataUrl === 'data:,') {
+                    showError('Error generating upscaled image data.');
+                    clearInterval(interval);
+                    upscaleButton.disabled = false;
+                    progressContainer.classList.add('hidden');
+                    progressBar.style.width = '0%';
+                    return;
+                }
+                
+                clearInterval(interval);
+                progressBar.style.width = '100%';
+
                 setTimeout(() => {
                     progressContainer.classList.add('hidden');
                     progressBar.style.width = '0%';
                     resultSection.classList.remove('hidden');
 
-                    originalDimensions.textContent = `Original Dimensions: ${img.width} x ${img.height} pixels`;
+                    originalDimensions.textContent = `Original Dimensions: ${img.naturalWidth} x ${img.naturalHeight} pixels`;
                     upscaledDimensions.textContent = `Upscaled Dimensions: ${canvas.width} x ${canvas.height} pixels`;
 
                     upscaledImage.src = upscaledDataUrl;
+                    const extension = (file.type === 'image/jpeg' ? 'jpg' : 'png');
                     downloadLink.href = upscaledDataUrl;
-                    downloadLink.download = `upscaled-${file.name.split('.')[0]}-${Date.now()}.png`;
+                    downloadLink.download = `${originalFileName}_upscaled_${scale}x.${extension}`;
 
-                    downloadLink.addEventListener('click', (e) => {
+                    downloadLink.addEventListener('click', (ev) => {
                         if (!downloadLink.href || downloadLink.href === '#') {
-                            e.preventDefault();
+                            ev.preventDefault();
                             showError('Download failed. Try again.');
-                            console.log('Download link empty or invalid');
                         }
-                        // No need to revoke URL here as it's a data URL
                     }, { once: true });
 
                     upscaleButton.disabled = false;
-                    console.log('Upscaling complete, download ready:', downloadLink.download);
-                }, 2000); // Simulate processing time
+                }, 300);
             };
 
             img.onerror = () => {
-                showError('Error loading the image for upscaling.');
-                console.log('Image load error during upscaling process');
+                showError('Error loading the image for upscaling. It might be corrupted.');
                 upscaleButton.disabled = false;
                 progressContainer.classList.add('hidden');
                 progressBar.style.width = '0%';
             };
-
             reader.onerror = () => {
                 showError('Error reading the file for upscaling.');
-                console.log('FileReader error during upscaling process');
                 upscaleButton.disabled = false;
                 progressContainer.classList.add('hidden');
                 progressBar.style.width = '0%';
