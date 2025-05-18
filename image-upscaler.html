@@ -76,8 +76,15 @@
     <div class="starry-bg"></div>
     <header class="bg-opacity-90 bg-gray-900 shadow-lg">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <h1 class="text-4xl font-bold text-white">Cosmic Tools - Image Upscaler 🔍</h1>
-            <p class="mt-2 text-lg text-gray-300">Enhance your images with adjustable upscale levels</p>
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-4xl font-bold text-white">Cosmic Tools - Image Upscaler 🔍</h1>
+                    <p class="mt-2 text-lg text-gray-300">Enhance your images with adjustable upscale levels</p>
+                </div>
+                <a href="Cosmic-Tools/index.html" class="text-white text-lg font-bold gradient-button py-2 px-4 rounded-md">
+                    ← Back to Tools
+                </a>
+            </div>
         </div>
     </header>
     <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
@@ -262,6 +269,13 @@
                 const scale = parseFloat(upscaleLevel.value);
                 canvas.width = img.width * scale;
                 canvas.height = img.height * scale;
+
+                // Basic nearest-neighbor upscaling (pixelated)
+                // For better quality, you'd need more complex algorithms (e.g., bicubic, Lanczos, or AI)
+                // which are generally too complex/slow for client-side JavaScript for large images.
+                // This example uses the browser's default image scaling when drawing, which is often bilinear.
+                ctx.imageSmoothingEnabled = false; // For sharper, pixelated look if desired for certain art styles
+                // ctx.imageSmoothingQuality = "high"; // Try for smoother results if browser supports
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
                 let progress = 0;
@@ -271,12 +285,13 @@
                     if (progress >= 100) clearInterval(interval);
                 }, 200);
 
-                const upscaledDataUrl = canvas.toDataURL('image/png');
+                const upscaledDataUrl = canvas.toDataURL('image/png'); // Or image/jpeg for lossy compression
                 if (!upscaledDataUrl || upscaledDataUrl === 'data:,') {
-                    showError('Error generating upscaled image.');
-                    console.log('Invalid canvas output');
+                    showError('Error generating upscaled image. Canvas output might be too large or invalid.');
+                    console.log('Invalid canvas output or canvas too large. Dimensions:', canvas.width, 'x', canvas.height);
                     upscaleButton.disabled = false;
                     progressContainer.classList.add('hidden');
+                    progressBar.style.width = '0%';
                     return;
                 }
 
@@ -290,26 +305,36 @@
 
                     upscaledImage.src = upscaledDataUrl;
                     downloadLink.href = upscaledDataUrl;
-                    downloadLink.download = `upscaled-image-${Date.now()}.png`;
+                    downloadLink.download = `upscaled-${file.name.split('.')[0]}-${Date.now()}.png`;
 
                     downloadLink.addEventListener('click', (e) => {
-                        if (!downloadLink.href) {
+                        if (!downloadLink.href || downloadLink.href === '#') {
                             e.preventDefault();
                             showError('Download failed. Try again.');
-                            console.log('Download link empty');
+                            console.log('Download link empty or invalid');
                         }
+                        // No need to revoke URL here as it's a data URL
                     }, { once: true });
 
                     upscaleButton.disabled = false;
                     console.log('Upscaling complete, download ready:', downloadLink.download);
-                }, 2000);
+                }, 2000); // Simulate processing time
             };
 
             img.onerror = () => {
-                showError('Error loading the image.');
-                console.log('Image load error');
+                showError('Error loading the image for upscaling.');
+                console.log('Image load error during upscaling process');
                 upscaleButton.disabled = false;
                 progressContainer.classList.add('hidden');
+                progressBar.style.width = '0%';
+            };
+
+            reader.onerror = () => {
+                showError('Error reading the file for upscaling.');
+                console.log('FileReader error during upscaling process');
+                upscaleButton.disabled = false;
+                progressContainer.classList.add('hidden');
+                progressBar.style.width = '0%';
             };
 
             reader.readAsDataURL(file);
