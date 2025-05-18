@@ -11,88 +11,41 @@
     <!-- Open Graph for Social Media -->
     <meta property="og:title" content="Cosmic Tools - PDF Merger">
     <meta property="og:description" content="Merge multiple PDFs into a single file with optimized images. Free and user-friendly.">
-    <meta property="og:image" content="https://yourdomain.com/og-image.jpg"> <!-- Replace with your actual OG image URL -->
-    <meta property="og:url" content="https://yourdomain.com/merger"> <!-- Replace with your actual URL -->
+    <meta property="og:image" content="https://yourdomain.com/og-image-pdf-merger.jpg"> <!-- Specific OG Image -->
+    <meta property="og:url" content="https://yourdomain.com/pdf-merger.html"> <!-- Specific URL -->
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicon.png"> <!-- Ensure this path is correct -->
+    <link rel="icon" type="image/png" href="./favicon.png"> <!-- Assuming favicon is in the same dir or root -->
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google AdSense Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
-            crossorigin="anonymous"></script> <!-- Replace with your AdSense ID -->
+            crossorigin="anonymous"></script> <!-- REPLACE YOUR_ADSENSE_PUBLISHER_ID -->
     <!-- PDF.js for Previews -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <!-- PDF-Lib.js for Merging -->
     <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-    <!-- Compressor.js for Image Optimization (Note: Simplified usage for PDFs) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/compressorjs/1.2.1/compressor.min.js"></script>
     <style>
         body {
-            background: linear-gradient(to bottom, #1a1a3d, #2c2c54);
-            color: #ffffff;
-            position: relative;
-            font-family: 'Montserrat', sans-serif;
-            min-height: 100vh; /* Ensure footer stays down */
-            display: flex;
-            flex-direction: column;
+            background: linear-gradient(to bottom, #1a1a3d, #2c2c54); color: #ffffff; position: relative;
+            font-family: 'Montserrat', sans-serif; min-height: 100vh; display: flex; flex-direction: column;
         }
-        main {
-            flex-grow: 1;
-        }
-        h1, h2, h3, button {
-            font-family: 'Orbitron', sans-serif;
-        }
+        main { flex-grow: 1; }
+        h1, h2, h3, button, label { font-family: 'Orbitron', sans-serif; }
         .starry-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-            opacity: 0.3;
-            z-index: -1;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat; opacity: 0.3; z-index: -1;
         }
-        .dragover {
-            border: 2px dashed #4ecdc4;
-            background-color: rgba(78, 205, 196, 0.1);
-        }
-        .progress-bar {
-            height: 8px;
-            background-color: #2c2c54;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        .progress-bar-fill {
-            height: 100%;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            transition: width 0.3s ease-in-out;
-        }
-        .error-message {
-            color: #ff6b6b;
-            font-size: 0.875rem;
-            margin-top: 0.5rem;
-            font-weight: 800;
-        }
-        .gradient-button {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            transition: background 0.3s ease;
-        }
-        .gradient-button:hover {
-            background: linear-gradient(45deg, #4ecdc4, #ff6b6b);
-        }
-        .pdf-item {
-            cursor: move;
-            transition: transform 0.2s;
-        }
-        .pdf-item.dragging {
-            opacity: 0.5;
-            transform: scale(0.95);
-        }
-        .custom-range { /* For the quality slider */
-            accent-color: #ec4899; /* Tailwind pink-500 equivalent */
-        }
+        .dragover { border: 2px dashed #4ecdc4; background-color: rgba(78, 205, 196, 0.1); }
+        .progress-bar { height: 8px; background-color: #2c2c54; border-radius: 4px; overflow: hidden; }
+        .progress-bar-fill { height: 100%; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); transition: width 0.3s ease-in-out; }
+        .error-message { color: #ff6b6b; font-size: 0.875rem; margin-top: 0.5rem; font-weight: 800; }
+        .gradient-button { background: linear-gradient(45deg, #ff6b6b, #4ecdc4); transition: background 0.3s ease; }
+        .gradient-button:hover { background: linear-gradient(45deg, #4ecdc4, #ff6b6b); }
+        .pdf-item { cursor: move; transition: transform 0.2s; }
+        .pdf-item.dragging { opacity: 0.5; transform: scale(0.95); }
+        .custom-range { accent-color: #ec4899; }
     </style>
 </head>
 <body class="font-extrabold">
@@ -104,7 +57,8 @@
                     <h1 class="text-4xl font-bold text-white">Cosmic Tools - PDF Merger 🔗</h1>
                     <p class="mt-2 text-lg text-gray-300">Combine multiple PDFs with image optimization</p>
                 </div>
-                <a href="Cosmic-Tools/index.html" class="text-white text-lg font-bold gradient-button py-2 px-4 rounded-md">
+                <!-- CORRECTED BACK BUTTON HYPERLINK for GitHub Project Page -->
+                <a href="/Cosmic-Tools/index.html" class="text-white text-lg font-bold gradient-button py-2 px-4 rounded-md">
                     ← Back to Tools
                 </a>
             </div>
@@ -118,7 +72,7 @@
                  data-ad-layout="in-article"
                  data-ad-format="fluid"
                  data-ad-client="ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
-                 data-ad-slot="YOUR_TOP_BANNER_AD_SLOT_ID"></ins> <!-- Replace AdSense details -->
+                 data-ad-slot="YOUR_PDF_MERGER_TOP_AD_SLOT_ID"></ins>
             <script>
                  (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
@@ -139,9 +93,9 @@
                     <ul id="pdfList" class="mt-2 space-y-4"></ul>
                 </div>
                 <div class="mb-4">
-                    <label for="imageQuality" class="block text-base font-bold text-gray-300">Image Optimization Quality: <span id="qualityValue" class="text-pink-400">0.8</span></label>
-                    <input type="range" id="imageQuality" min="0.1" max="1" step="0.05" value="0.8" class="mt-1 w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer custom-range">
-                    <p class="text-sm text-gray-400 mt-1 font-sans font-normal">Adjust quality for images in PDFs (0.1 to 1). Higher values mean better quality but larger files. (Note: This is a simplified client-side approach for demonstration).</p>
+                    <label for="imageQuality" class="block text-base font-bold text-gray-300">Image Optimization Quality: <span id="qualityValue" class="text-pink-400">0.80</span></label>
+                    <input type="range" id="imageQuality" min="0.1" max="1" step="0.01" value="0.80" class="mt-1 w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer custom-range">
+                    <p class="text-sm text-gray-400 mt-1 font-sans font-normal">Adjust quality for images in PDFs (0.1 to 1). Higher values mean better quality but larger files. (Note: This is a simplified client-side approach and its effect on PDF internal images is limited).</p>
                 </div>
                 <button id="mergeButton" class="w-full py-3 px-4 text-lg text-white rounded-md gradient-button font-bold disabled:opacity-50 disabled:cursor-not-allowed" disabled>Merge PDFs 🔗</button>
                 <div id="progressContainer" class="mt-4 hidden">
@@ -165,9 +119,9 @@
                     <ins class="adsbygoogle"
                          style="display:block"
                          data-ad-client="ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
-                         data-ad-slot="YOUR_SIDEBAR_AD_SLOT_ID_1"
+                         data-ad-slot="YOUR_PDF_MERGER_SIDEBAR_AD_SLOT_ID"
                          data-ad-format="auto"
-                         data-full-width-responsive="true"></ins> <!-- Replace AdSense details -->
+                         data-full-width-responsive="true"></ins>
                     <script>
                          (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
@@ -179,8 +133,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p class="text-gray-300 text-lg font-bold">Copyright © <span id="currentYear"></span> Cosmic Tools. All rights reserved.</p>
             <nav class="mt-4 flex justify-center space-x-4">
-                <a href="/privacy" class="text-gray-300 hover:text-white text-base font-bold">Privacy Policy 📜</a>
-                <a href="/terms" class="text-gray-300 hover:text-white text-base font-bold">Terms of Service 📝</a>
+                <a href="/Cosmic-Tools/privacy.html" class="text-gray-300 hover:text-white text-base font-bold">Privacy Policy 📜</a> <!-- Adjusted path -->
+                <a href="/Cosmic-Tools/terms.html" class="text-gray-300 hover:text-white text-base font-bold">Terms of Service 📝</a> <!-- Adjusted path -->
             </nav>
         </div>
     </footer>
@@ -200,7 +154,7 @@
         const downloadLink = document.getElementById('downloadLink');
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        let pdfFiles = []; // Array to store File objects
+        let pdfFiles = [];
 
         imageQualitySlider.addEventListener('input', () => {
             qualityValueDisplay.textContent = parseFloat(imageQualitySlider.value).toFixed(2);
@@ -214,23 +168,21 @@
 
         function updatePdfList() {
             pdfList.innerHTML = '';
-            pdfFiles.forEach((fileObj, index) => { // fileObj is the File object
+            pdfFiles.forEach((fileObj, index) => {
                 const li = document.createElement('li');
                 li.className = 'pdf-item flex items-center justify-between bg-gray-700 p-3 rounded-lg shadow-md';
                 li.draggable = true;
-                li.dataset.index = index; // Store original index for reordering
+                li.dataset.index = index;
                 li.innerHTML = `
                     <div class="flex items-center space-x-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" /></svg>
                         <canvas id="pdfPreview${index}" class="w-12 h-16 border border-gray-600 rounded shadow" aria-label="PDF Preview"></canvas>
                         <span class="text-sm text-gray-300 font-semibold">${fileObj.name}</span>
                     </div>
                     <button class="text-red-500 hover:text-red-300 font-bold text-xl" onclick="removePdf(${index})">×</button>
                 `;
                 pdfList.appendChild(li);
-                renderPdfPreview(fileObj, index); // Pass the File object
+                renderPdfPreview(fileObj, index);
             });
             mergeButton.disabled = pdfFiles.length < 2;
             setupDragAndDrop();
@@ -238,27 +190,24 @@
 
         async function renderPdfPreview(file, index) {
             const canvas = document.getElementById(`pdfPreview${index}`);
-            if (!canvas) return; // Element might not exist if list updated quickly
+            if (!canvas) return;
             const context = canvas.getContext('2d');
             try {
                 const arrayBuffer = await file.arrayBuffer();
-                // Ensure pdfjsLib is loaded
                 if (typeof pdfjsLib === 'undefined' || !pdfjsLib.getDocument) {
                     showError("PDF.js library not loaded. Preview unavailable.");
-                    context.fillStyle = 'gray'; context.fillRect(0,0,canvas.width,canvas.height);
-                    return;
+                    context.fillStyle = 'gray'; context.fillRect(0,0,canvas.width,canvas.height); return;
                 }
                 const pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
                 const page = await pdfDoc.getPage(1);
-                const viewport = page.getViewport({ scale: 0.15 }); // Adjusted scale for smaller preview
-                canvas.width = viewport.width;
-                canvas.height = viewport.height;
+                const viewport = page.getViewport({ scale: 0.15 });
+                canvas.width = viewport.width; canvas.height = viewport.height;
                 await page.render({ canvasContext: context, viewport: viewport }).promise;
             } catch (e) {
                 console.error(`Error rendering preview for ${file.name}:`, e);
-                context.fillStyle = 'rgba(255,0,0,0.2)'; context.fillRect(0,0,canvas.width,canvas.height);
-                context.fillStyle = 'white'; context.font = '8px Orbitron';
-                context.textAlign = 'center'; context.fillText('Error', canvas.width/2, canvas.height/2);
+                context.fillStyle = 'rgba(200,50,50,0.3)'; context.fillRect(0,0,canvas.width,canvas.height);
+                context.fillStyle = 'white'; context.font = '8px Orbitron'; context.textAlign = 'center';
+                context.fillText('Err', canvas.width/2, canvas.height/2);
             }
         }
 
@@ -271,144 +220,92 @@
             let draggedItem = null;
             pdfList.querySelectorAll('.pdf-item').forEach(item => {
                 item.addEventListener('dragstart', (e) => {
-                    draggedItem = item;
-                    item.classList.add('dragging');
-                    // e.dataTransfer.setData('text/plain', item.dataset.index); // Not strictly needed if using draggedItem
+                    draggedItem = item; item.classList.add('dragging');
                 });
                 item.addEventListener('dragend', () => {
-                    item.classList.remove('dragging');
-                    draggedItem = null;
+                    item.classList.remove('dragging'); draggedItem = null;
                 });
-                item.addEventListener('dragover', (e) => {
-                    e.preventDefault();
-                    const targetItem = e.target.closest('.pdf-item');
-                    if (targetItem && targetItem !== draggedItem) {
-                        // Visual cue for drop target (optional)
-                    }
-                });
+                item.addEventListener('dragover', (e) => e.preventDefault());
                 item.addEventListener('drop', (e) => {
                     e.preventDefault();
                     const targetItem = e.target.closest('.pdf-item');
                     if (targetItem && draggedItem && targetItem !== draggedItem) {
                         const fromIndex = parseInt(draggedItem.dataset.index);
                         const toIndex = parseInt(targetItem.dataset.index);
-
                         const [movedFile] = pdfFiles.splice(fromIndex, 1);
                         pdfFiles.splice(toIndex, 0, movedFile);
-                        updatePdfList(); // Re-render the list with new order
+                        updatePdfList();
                     }
                 });
             });
         }
 
-        dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropZone.classList.add('dragover');
-        });
-        dropZone.addEventListener('dragleave', () => {
-            dropZone.classList.remove('dragover');
-        });
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
         dropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropZone.classList.remove('dragover');
+            e.preventDefault(); dropZone.classList.remove('dragover');
             const files = Array.from(e.dataTransfer.files).filter(file => file.type === 'application/pdf');
-            if (files.length === 0 && e.dataTransfer.files.length > 0) {
-                showError('Please drop PDF files only.');
-                return;
-            }
-            if (files.length > 0) {
-                pdfFiles.push(...files);
-                updatePdfList();
-            }
+            if (files.length === 0 && e.dataTransfer.files.length > 0) { showError('Please drop PDF files only.'); return; }
+            if (files.length > 0) { pdfFiles.push(...files); updatePdfList(); }
         });
         dropZone.addEventListener('click', () => pdfInput.click());
         pdfInput.addEventListener('change', () => {
             const files = Array.from(pdfInput.files).filter(file => file.type === 'application/pdf');
-            if (files.length === 0 && pdfInput.files.length > 0) {
-                showError('Please select PDF files only.');
-                pdfInput.value = '';
-                return;
-            }
-            if (files.length > 0) {
-                pdfFiles.push(...files);
-                updatePdfList();
-            }
+            if (files.length === 0 && pdfInput.files.length > 0) { showError('Please select PDF files only.'); pdfInput.value = ''; return; }
+            if (files.length > 0) { pdfFiles.push(...files); updatePdfList(); }
             pdfInput.value = '';
         });
 
         mergeButton.addEventListener('click', async () => {
-            if (pdfFiles.length < 2) {
-                showError('Please upload at least two PDFs.');
-                return;
-            }
+            if (pdfFiles.length < 2) { showError('Please upload at least two PDFs.'); return; }
             mergeButton.disabled = true;
             progressContainer.classList.remove('hidden');
             resultSection.classList.add('hidden');
             progressBar.style.width = '0%';
-
             let progress = 0;
             const progressInterval = setInterval(() => {
-                progress += 5;
-                progressBar.style.width = `${Math.min(progress, 100)}%`;
+                progress += 5; progressBar.style.width = `${Math.min(progress, 100)}%`;
                 if (progress >= 100) clearInterval(progressInterval);
             }, 150);
 
             try {
-                const { PDFDocument } = PDFLib; // Ensure PDFLib is available
+                const { PDFDocument } = PDFLib;
                 const mergedPdf = await PDFDocument.create();
                 let totalPages = 0;
-
                 for (const file of pdfFiles) {
                     const arrayBuffer = await file.arrayBuffer();
-                    const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true }); // Added ignoreEncryption
+                    const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
                     const copiedPages = await mergedPdf.copyPages(pdfDoc, pdfDoc.getPageIndices());
                     copiedPages.forEach(page => mergedPdf.addPage(page));
                     totalPages += pdfDoc.getPageCount();
                 }
-                
-                // Note: Client-side PDF image optimization is very complex.
-                // The Compressor.js library is for browser image Files/Blobs, not embedded PDF images.
-                // True PDF optimization usually requires server-side tools or specialized libraries.
-                // This 'imageQualitySlider.value' is more for show in this client-side context for PDF.
                 console.log("Image quality setting (for reference, not deeply applied to PDF images client-side): " + imageQualitySlider.value);
-
                 const pdfBytes = await mergedPdf.save();
                 const blob = new Blob([pdfBytes], { type: 'application/pdf' });
                 const url = URL.createObjectURL(blob);
 
-                // Render preview of the first page of the merged PDF
                 if (typeof pdfjsLib !== 'undefined' && pdfjsLib.getDocument) {
                     const mergedPdfForPreview = await pdfjsLib.getDocument({ data: pdfBytes }).promise;
                     const page = await mergedPdfForPreview.getPage(1);
                     const viewport = page.getViewport({ scale: 0.3 });
-                    mergedPreview.width = viewport.width;
-                    mergedPreview.height = viewport.height;
+                    mergedPreview.width = viewport.width; mergedPreview.height = viewport.height;
                     const context = mergedPreview.getContext('2d');
                     await page.render({ canvasContext: context, viewport: viewport }).promise;
                 }
-
-                clearInterval(progressInterval);
-                progressBar.style.width = '100%';
-
+                clearInterval(progressInterval); progressBar.style.width = '100%';
                 setTimeout(() => {
-                    progressContainer.classList.add('hidden');
-                    progressBar.style.width = '0%';
+                    progressContainer.classList.add('hidden'); progressBar.style.width = '0%';
                     resultSection.classList.remove('hidden');
                     mergedDetails.textContent = `Merged PDF: ${totalPages} pages. Approx. Size: ${(pdfBytes.length / 1024 / 1024).toFixed(2)} MB`;
                     downloadLink.href = url;
                     downloadLink.download = `merged-cosmic-${Date.now()}.pdf`;
-                    downloadLink.onclick = () => {
-                        setTimeout(() => URL.revokeObjectURL(url), 100); // Revoke after download starts
-                    };
+                    downloadLink.onclick = () => { setTimeout(() => URL.revokeObjectURL(url), 100); };
                     mergeButton.disabled = false;
                 }, 300);
-
             } catch (e) {
                 console.error('Error merging PDFs:', e);
                 showError('Error merging PDFs: ' + e.message + '. Some PDFs might be encrypted or corrupted.');
-                clearInterval(progressInterval);
-                progressContainer.classList.add('hidden');
-                progressBar.style.width = '0%';
+                clearInterval(progressInterval); progressContainer.classList.add('hidden'); progressBar.style.width = '0%';
                 mergeButton.disabled = false;
             }
         });
