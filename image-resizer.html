@@ -3,115 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- SEO Meta Tags (Resizer Specific) -->
     <title>Cosmic Tools - Image Resizer & Optimizer 🛠️</title>
     <meta name="description" content="Cosmic Tools Image Resizer: Easily resize and optimize your JPG, PNG, and WEBP images online. Adjust dimensions, quality, and maintain aspect ratio. Fast, free, and responsive.">
     <meta name="keywords" content="image resizer, image optimizer, resize image, cosmic tools, free image resizer, jpg resizer, png resizer, webp resizer, online tool, responsive resizer">
     <meta name="author" content="Cosmic Tools">
     <meta name="robots" content="index, follow">
-
-    <!-- Open Graph / Facebook (Resizer Specific) -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourdomain.com/resizer"> <!-- Replace with your actual URL -->
+    <meta property="og:url" content="https://yourdomain.com/resizer">
     <meta property="og:title" content="Cosmic Tools - Image Resizer & Optimizer">
     <meta property="og:description" content="Easily resize and optimize your JPG, PNG, and WEBP images online with Cosmic Tools.">
-    <meta property="og:image" content="https://yourdomain.com/og-image-resizer.jpg"> <!-- Replace with a resizer-specific image -->
-
-    <!-- Favicon (from your upscaler) -->
-    <link rel="icon" type="image/png" href="/favicon.png"> <!-- Make sure this path is correct -->
-
-    <!-- Google Fonts (from your upscaler) -->
+    <meta property="og:image" content="https://yourdomain.com/og-image-resizer.jpg">
+    <link rel="icon" type="image/png" href="/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS CDN (from your upscaler) -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google AdSense Script -->
-    <!-- IMPORTANT: For web AdSense, the client ID usually starts with 'ca-pub-'.
-         The 'ca-app-pub-' is typically for AdMob (apps).
-         Please double-check your AdSense publisher ID. I'm using a placeholder. -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
             crossorigin="anonymous"></script>
-
     <style>
         body {
-            background: linear-gradient(to bottom, #1a1a3d, #2c2c54);
-            color: #ffffff;
-            position: relative;
-            font-family: 'Montserrat', sans-serif; /* Default font */
+            background: linear-gradient(to bottom, #1a1a3d, #2c2c54); color: #ffffff; position: relative;
+            font-family: 'Montserrat', sans-serif; min-height: 100vh; display: flex; flex-direction: column;
         }
-        h1, h2, h3, button, label, select, input[type="number"] { /* Apply Orbitron to more elements for consistency */
-            font-family: 'Orbitron', sans-serif;
-        }
-        .starry-bg {
-            position: fixed; /* Fixed to cover viewport */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-            opacity: 0.3;
-            z-index: -1;
-        }
-        .dragover {
-            border: 2px dashed #4ecdc4;
-            background-color: rgba(78, 205, 196, 0.1);
-        }
-        .progress-bar {
-            height: 8px;
-            background-color: #2c2c54; /* Darker background for progress bar */
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        .progress-bar-fill {
-            height: 100%;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            transition: width 0.3s ease-in-out;
-        }
-        .error-message {
-            color: #ff6b6b;
-            font-size: 0.875rem;
-            margin-top: 0.5rem;
-            font-weight: 800; /* From upscaler */
-        }
-        .gradient-button {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            transition: background 0.3s ease;
-        }
-        .gradient-button:hover {
-            background: linear-gradient(45deg, #4ecdc4, #ff6b6b);
-        }
-        /* Custom styles for resizer controls to match the theme */
-        .custom-input, .custom-select {
-            background-color: #2c3e50; /* Darker input background */
-            border: 1px solid #4a5568; /* Tailwind gray-600 */
-            color: #ffffff;
-            padding: 0.75rem; /* Tailwind p-3 */
-            border-radius: 0.375rem; /* Tailwind rounded-md */
-            width: 100%;
-        }
-        .custom-input:focus, .custom-select:focus {
-            outline: none;
-            border-color: #4ecdc4;
-            box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.5);
-        }
-        .custom-label {
-            font-weight: bold; /* Orbitron takes care of font */
-            color: #cbd5e0; /* Tailwind gray-300 */
-            margin-bottom: 0.5rem; /* Tailwind mb-2 */
-            display: block;
-        }
-         #qualityValueOutput {
-            color: #4ecdc4;
-            font-weight: bold;
-            margin-left: 10px;
-        }
+        main { flex-grow: 1; }
+        h1, h2, h3, button, label, select, input[type="number"] { font-family: 'Orbitron', sans-serif; }
+        .starry-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat; opacity: 0.3; z-index: -1; }
+        .dragover { border: 2px dashed #4ecdc4; background-color: rgba(78, 205, 196, 0.1); }
+        .progress-bar { height: 8px; background-color: #2c2c54; border-radius: 4px; overflow: hidden; }
+        .progress-bar-fill { height: 100%; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); transition: width 0.3s ease-in-out; }
+        .error-message { color: #ff6b6b; font-size: 0.875rem; margin-top: 0.5rem; font-weight: 800; }
+        .gradient-button { background: linear-gradient(45deg, #ff6b6b, #4ecdc4); transition: background 0.3s ease; }
+        .gradient-button:hover { background: linear-gradient(45deg, #4ecdc4, #ff6b6b); }
+        .custom-input, .custom-select { background-color: #2c3e50; border: 1px solid #4a5568; color: #ffffff;
+            padding: 0.75rem; border-radius: 0.375rem; width: 100%; }
+        .custom-input:focus, .custom-select:focus { outline: none; border-color: #4ecdc4; box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.5); }
+        .custom-label { font-weight: bold; color: #cbd5e0; margin-bottom: 0.5rem; display: block; }
+        #qualityValueOutput { color: #4ecdc4; font-weight: bold; margin-left: 10px; }
+        .custom-range { accent-color: #ec4899; } /* For range slider thumb */
     </style>
 </head>
-<body class="font-extrabold"> <!-- font-extrabold from upscaler -->
+<body class="font-extrabold">
     <div class="starry-bg"></div>
-
     <header class="bg-opacity-90 bg-gray-900 shadow-lg">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center">
@@ -125,26 +56,15 @@
             </div>
         </div>
     </header>
-
     <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <!-- Top Banner Ad -->
         <div class="mb-6">
-            <!-- Replace with your actual AdSense Ad Unit Code -->
-            <ins class="adsbygoogle"
-                 style="display:block; text-align:center;"
-                 data-ad-layout="in-article"
-                 data-ad-format="fluid"
-                 data-ad-client="ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
-                 data-ad-slot="YOUR_TOP_BANNER_AD_SLOT_ID"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+            <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid"
+                 data-ad-client="ca-pub-YOUR_ADSENSE_PUBLISHER_ID" data-ad-slot="YOUR_TOP_BANNER_AD_SLOT_ID"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
-
         <div class="flex flex-col lg:flex-row gap-6">
             <div class="flex-1 bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg">
                 <h2 class="text-2xl font-bold text-white mb-4">Resize Your Image 🌌</h2>
-
                 <div class="mb-4">
                     <label class="custom-label">1. Select Image</label>
                     <div id="dropZone" class="border-2 border-dashed border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:bg-gray-700 transition-colors">
@@ -153,13 +73,11 @@
                     </div>
                     <p id="errorMessage" class="error-message hidden"></p>
                 </div>
-
                 <div class="mb-4">
                     <label class="custom-label">Original Image Preview</label>
-                    <img id="originalImagePreview" class="mt-2 max-w-full h-auto rounded-lg hidden" alt="Original Image Preview">
-                    <p id="originalInfo" class="text-sm text-gray-400 mt-1"></p>
+                    <img id="originalImagePreview" class="mt-2 max-w-full h-auto rounded-lg hidden shadow-md" alt="Original Image Preview">
+                    <p id="originalInfo" class="text-sm text-gray-400 mt-1 font-sans font-normal"></p>
                 </div>
-
                 <h3 class="text-xl font-bold text-white mt-6 mb-3">2. Set Dimensions & Options</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
@@ -171,19 +89,16 @@
                         <input type="number" id="targetHeight" placeholder="e.g., 600" class="custom-input">
                     </div>
                 </div>
-
                 <div class="mb-4 flex items-center">
-                    <input type="checkbox" id="aspectRatio" checked class="h-5 w-5 text-indigo-400 focus:ring-indigo-300 border-gray-500 rounded bg-gray-700">
-                    <label for="aspectRatio" class="ml-2 text-gray-300">Maintain Aspect Ratio</label>
+                    <input type="checkbox" id="aspectRatio" checked class="h-5 w-5 text-indigo-400 focus:ring-indigo-300 border-gray-500 rounded bg-gray-700 custom-range">
+                    <label for="aspectRatio" class="ml-2 text-gray-300 font-sans font-semibold">Maintain Aspect Ratio</label>
                 </div>
-
                 <div class="mb-4">
                     <label for="imageQuality" class="custom-label">3. Quality (0.1 - 1.0 for JPG/WEBP):
                         <span id="qualityValueOutput">0.85</span>
                     </label>
-                    <input type="range" id="imageQuality" min="0.1" max="1" step="0.05" value="0.85" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-pink-500">
+                    <input type="range" id="imageQuality" min="0.1" max="1" step="0.01" value="0.85" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer custom-range">
                 </div>
-
                 <div class="mb-6">
                     <label for="outputFormat" class="custom-label">4. Output Format:</label>
                     <select id="outputFormat" class="custom-select">
@@ -192,75 +107,40 @@
                         <option value="image/webp">WEBP</option>
                     </select>
                 </div>
-
                 <button id="resizeButton" class="w-full py-3 px-4 text-lg text-white rounded-md gradient-button font-bold disabled:opacity-50 disabled:cursor-not-allowed" disabled>Resize Image ⚙️</button>
-
                 <div id="progressContainer" class="mt-4 hidden">
                     <p class="text-base text-gray-300 mb-2 font-bold">Resizing...</p>
-                    <div class="progress-bar">
-                        <div id="progressBar" class="progress-bar-fill" style="width: 0%"></div>
-                    </div>
+                    <div class="progress-bar"><div id="progressBar" class="progress-bar-fill" style="width: 0%"></div></div>
                 </div>
-
                 <div id="resultSection" class="mt-6 hidden">
                     <h3 class="text-xl font-bold text-white">Resize Result 🎉</h3>
                     <p id="resizedDimensions" class="text-base text-gray-300 font-bold"></p>
-                    <div class="mt-4">
-                        <img id="resizedImage" class="max-w-full h-auto rounded-lg shadow" alt="Resized Image">
-                    </div>
-                    <p id="resizedFileInfo" class="text-sm text-gray-400 mt-1"></p>
+                    <div class="mt-4"><img id="resizedImage" class="max-w-full h-auto rounded-lg shadow" alt="Resized Image"></div>
+                    <p id="resizedFileInfo" class="text-sm text-gray-400 mt-1 font-sans font-normal"></p>
                     <a id="downloadLink" href="#" class="mt-4 inline-block py-3 px-4 text-lg text-white rounded-md gradient-button font-bold hidden">Download Resized Image ⬇️</a>
                 </div>
             </div>
-
-            <!-- Sidebar Ad (Desktop Only) -->
             <aside class="hidden lg:block lg:w-1/3 space-y-6">
                 <div>
-                    <!-- Replace with your actual AdSense Ad Unit Code -->
-                    <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-client="ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
-                         data-ad-slot="YOUR_SIDEBAR_AD_SLOT_ID_1"
-                         data-ad-format="auto"
-                         data-full-width-responsive="true"></ins>
-                    <script>
-                         (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                </div>
-                 <div>
-                    <!-- Replace with your actual AdSense Ad Unit Code -->
-                    <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-client="ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
-                         data-ad-slot="YOUR_SIDEBAR_AD_SLOT_ID_2"
-                         data-ad-format="auto"
-                         data-full-width-responsive="true"></ins>
-                    <script>
-                         (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
+                         data-ad-slot="YOUR_SIDEBAR_AD_SLOT_ID_1" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 </div>
             </aside>
         </div>
-         <!-- How to Use Section -->
         <section class="mt-10 bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg">
             <h2 class="text-2xl font-bold text-white mb-4">How to Use This Resizer 📜</h2>
-            <ol class="list-decimal list-inside text-gray-300 space-y-2">
-                <li><strong>Upload Image:</strong> Drag and drop your image into the designated area, or click to browse and select a file (JPG, PNG, WEBP).</li>
-                <li><strong>Set Dimensions:</strong> Enter your desired width and/or height in pixels.
-                    <ul class="list-disc list-inside ml-6 mt-1">
-                        <li>If "Maintain Aspect Ratio" is checked (default), changing one dimension will automatically adjust the other to preserve proportions.</li>
-                        <li>Uncheck it to set width and height independently.</li>
-                    </ul>
-                </li>
-                <li><strong>Adjust Quality (for JPG/WEBP):</strong> Use the slider to set the image quality. Lower quality results in smaller file sizes, while higher quality preserves more detail. This setting does not significantly affect PNG files.</li>
-                <li><strong>Select Output Format:</strong> Choose your desired format (JPEG, PNG, or WEBP) for the resized image.</li>
+            <ol class="list-decimal list-inside text-gray-300 space-y-2 font-sans font-normal">
+                <li><strong>Upload Image:</strong> Drag and drop or click to select (JPG, PNG, WEBP).</li>
+                <li><strong>Set Dimensions:</strong> Enter width/height. "Maintain Aspect Ratio" is on by default.</li>
+                <li><strong>Adjust Quality (JPG/WEBP):</strong> Use the slider. PNG quality is not affected by this slider.</li>
+                <li><strong>Select Output Format:</strong> Choose JPEG, PNG, or WEBP.</li>
                 <li><strong>Resize:</strong> Click the "Resize Image" button.</li>
-                <li><strong>Preview & Download:</strong> A preview of the resized image will appear along with its new dimensions and estimated file size. Click "Download Resized Image" to save it.</li>
+                <li><strong>Preview & Download:</strong> Review and download your resized image.</li>
             </ol>
-            <p class="mt-4 text-gray-400"><strong>Note:</strong> All processing is done locally in your browser for speed and privacy. Larger images may take a few moments to process.</p>
+            <p class="mt-4 text-gray-400 font-sans font-normal"><strong>Note:</strong> Processing is done in your browser for speed and privacy.</p>
         </section>
     </main>
-
     <footer class="bg-gray-900 bg-opacity-90 mt-10 py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p class="text-gray-300 text-lg font-bold">Copyright © <span id="currentYear"></span> Cosmic Tools. All rights reserved.</p>
@@ -270,23 +150,19 @@
             </nav>
         </div>
     </footer>
-
     <script>
-        // DOM Elements
         const dropZone = document.getElementById('dropZone');
-        const imageUpload = document.getElementById('imageUpload'); // Original ID for file input
+        const imageUpload = document.getElementById('imageUpload');
         const resizeButton = document.getElementById('resizeButton');
         const originalImagePreview = document.getElementById('originalImagePreview');
         const originalInfo = document.getElementById('originalInfo');
         const errorMessage = document.getElementById('errorMessage');
-
         const targetWidthInput = document.getElementById('targetWidth');
         const targetHeightInput = document.getElementById('targetHeight');
         const aspectRatioCheckbox = document.getElementById('aspectRatio');
         const imageQualitySlider = document.getElementById('imageQuality');
         const qualityValueOutput = document.getElementById('qualityValueOutput');
         const outputFormatSelect = document.getElementById('outputFormat');
-
         const progressContainer = document.getElementById('progressContainer');
         const progressBar = document.getElementById('progressBar');
         const resultSection = document.getElementById('resultSection');
@@ -296,74 +172,75 @@
         const downloadLink = document.getElementById('downloadLink');
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        let originalImage = null; // This will be an Image object
+        let originalImageObject = null;
         let originalWidth = 0;
         let originalHeight = 0;
         let originalType = '';
         let originalFileName = 'resized_image';
         let originalFileSize = 0;
 
-        // --- Drag and Drop & File Input ---
         function showError(message) {
             errorMessage.textContent = message;
             errorMessage.classList.remove('hidden');
             setTimeout(() => errorMessage.classList.add('hidden'), 5000);
         }
 
-        dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropZone.classList.add('dragover');
-        });
+        function formatBytes(bytes, decimals = 2) {
+            if (!+bytes) return '0 Bytes'
+            const k = 1024
+            const dm = decimals < 0 ? 0 : decimals
+            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+            const i = Math.floor(Math.log(bytes) / Math.log(k))
+            return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
+        }
+
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
         dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
         dropZone.addEventListener('drop', (e) => {
             e.preventDefault();
             dropZone.classList.remove('dragover');
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                handleImageUpload(files[0]);
-            } else {
-                showError('Please drop an image file.');
-            }
+            if (e.dataTransfer.files.length > 0) handleImageUpload(e.dataTransfer.files[0]);
+            else showError('Please drop an image file.');
         });
         dropZone.addEventListener('click', () => imageUpload.click());
         imageUpload.addEventListener('change', () => {
-            if (imageUpload.files.length > 0) {
-                handleImageUpload(imageUpload.files[0]);
-            }
+            if (imageUpload.files.length > 0) handleImageUpload(imageUpload.files[0]);
         });
 
         function handleImageUpload(file) {
-            if (!file.type.startsWith('image/')) {
-                showError('Please select a valid image file (JPG, PNG, WEBP).');
-                imageUpload.value = ''; // Reset file input
-                resizeButton.disabled = true;
-                originalImagePreview.classList.add('hidden');
-                originalInfo.textContent = '';
-                resultSection.classList.add('hidden');
-                downloadLink.classList.add('hidden');
-                return;
+            const acceptedMimeTypes = ['image/jpeg', 'image/png', 'image/webp'];
+            const acceptedExtensions = ['.jpg', '.jpeg', '.png', '.webp'];
+            let isValid = false;
+            const fileTypeLower = file.type ? file.type.toLowerCase() : "";
+            const fileNameLower = file.name.toLowerCase();
+
+            if (fileTypeLower && acceptedMimeTypes.includes(fileTypeLower)) isValid = true;
+            else {
+                for (const ext of acceptedExtensions) if (fileNameLower.endsWith(ext)) { isValid = true; break; }
+            }
+
+            if (!isValid) {
+                showError('Unsupported file. Use JPG, PNG, or WEBP. Type: ' + (fileTypeLower || 'unknown'));
+                imageUpload.value = ''; resetUI(); return;
             }
 
             originalFileName = file.name.substring(0, file.name.lastIndexOf('.')) || 'resized_image';
-            originalType = file.type;
+            originalType = fileTypeLower || (fileNameLower.endsWith('.png') ? 'image/png' : fileNameLower.endsWith('.webp') ? 'image/webp' : 'image/jpeg');
             originalFileSize = file.size;
 
-            // Suggest output format based on input
             if (originalType === 'image/png') outputFormatSelect.value = 'image/png';
             else if (originalType === 'image/webp') outputFormatSelect.value = 'image/webp';
             else outputFormatSelect.value = 'image/jpeg';
             toggleQualitySliderVisibility();
 
-
             const reader = new FileReader();
             reader.onload = (e) => {
                 originalImagePreview.src = e.target.result;
                 originalImagePreview.classList.remove('hidden');
-
-                originalImage = new Image();
-                originalImage.onload = () => {
-                    originalWidth = originalImage.width;
-                    originalHeight = originalImage.height;
+                originalImageObject = new Image();
+                originalImageObject.onload = () => {
+                    originalWidth = originalImageObject.naturalWidth;
+                    originalHeight = originalImageObject.naturalHeight;
                     targetWidthInput.value = originalWidth;
                     targetHeightInput.value = originalHeight;
                     originalInfo.textContent = `Original: ${originalWidth}x${originalHeight}px, ${formatBytes(originalFileSize)}`;
@@ -372,135 +249,98 @@
                     downloadLink.classList.add('hidden');
                     errorMessage.classList.add('hidden');
                 };
-                originalImage.onerror = () => {
-                    showError('Could not load image data. Please try another image.');
-                    resizeButton.disabled = true;
-                }
-                originalImage.src = e.target.result; // This is the Image object
+                originalImageObject.onerror = () => { showError('Could not load image data.'); resetUI(); };
+                originalImageObject.src = e.target.result;
             };
-            reader.onerror = () => {
-                showError('Error reading the image file.');
-                resizeButton.disabled = true;
-            };
+            reader.onerror = () => { showError('Error reading file.'); resetUI(); };
             reader.readAsDataURL(file);
         }
 
-        // --- Resizer Controls Logic ---
-        imageQualitySlider.addEventListener('input', () => {
-            qualityValueOutput.textContent = imageQualitySlider.value;
-        });
+        function resetUI() {
+            resizeButton.disabled = true;
+            originalImagePreview.classList.add('hidden');
+            originalInfo.textContent = '';
+            resultSection.classList.add('hidden');
+            downloadLink.classList.add('hidden');
+            targetWidthInput.value = '';
+            targetHeightInput.value = '';
+            originalImageObject = null;
+            imageUpload.value = ''; // Clear file input
+        }
 
+        imageQualitySlider.addEventListener('input', () => { qualityValueOutput.textContent = parseFloat(imageQualitySlider.value).toFixed(2); });
         outputFormatSelect.addEventListener('change', toggleQualitySliderVisibility);
 
         function toggleQualitySliderVisibility() {
             const isPNG = outputFormatSelect.value === 'image/png';
             imageQualitySlider.disabled = isPNG;
-            imageQualitySlider.parentNode.style.opacity = isPNG ? 0.5 : 1;
-            qualityValueOutput.textContent = isPNG ? 'N/A' : imageQualitySlider.value;
+            const qualitySection = imageQualitySlider.closest('div.mb-4');
+            if (qualitySection) qualitySection.style.opacity = isPNG ? 0.5 : 1;
+            qualityValueOutput.textContent = isPNG ? 'N/A' : parseFloat(imageQualitySlider.value).toFixed(2);
         }
 
-
         function updateDimensions(changedInput) {
-            if (!originalImage || !aspectRatioCheckbox.checked) return;
-
+            if (!originalImageObject || !aspectRatioCheckbox.checked) return;
             const newWidth = parseInt(targetWidthInput.value);
             const newHeight = parseInt(targetHeightInput.value);
-
             if (changedInput === 'width' && newWidth > 0 && originalWidth > 0) {
                 targetHeightInput.value = Math.round((originalHeight / originalWidth) * newWidth);
             } else if (changedInput === 'height' && newHeight > 0 && originalHeight > 0) {
                 targetWidthInput.value = Math.round((originalWidth / originalHeight) * newHeight);
             }
         }
-
         targetWidthInput.addEventListener('input', () => updateDimensions('width'));
         targetHeightInput.addEventListener('input', () => updateDimensions('height'));
-        aspectRatioCheckbox.addEventListener('change', () => {
-            if (targetWidthInput.value) updateDimensions('width');
-        });
+        aspectRatioCheckbox.addEventListener('change', () => { if (originalImageObject && targetWidthInput.value) updateDimensions('width'); });
 
-        // --- Resize Button Logic ---
         resizeButton.addEventListener('click', () => {
-            if (!originalImage) {
-                showError('Please upload an image first.');
-                return;
-            }
-
+            if (!originalImageObject) { showError('Please upload an image first.'); return; }
             let targetWidth = parseInt(targetWidthInput.value);
             let targetHeight = parseInt(targetHeightInput.value);
-
-            if (isNaN(targetWidth) || targetWidth <= 0) {
-                showError('Please enter a valid width.');
-                return;
-            }
-            if (isNaN(targetHeight) || targetHeight <= 0) {
-                showError('Please enter a valid height.');
-                return;
-            }
+            if (isNaN(targetWidth) || targetWidth <= 0) { showError('Please enter a valid width.'); return; }
+            if (isNaN(targetHeight) || targetHeight <= 0) { showError('Please enter a valid height.'); return; }
+            const MAX_DIMENSION = 12000;
+            if (targetWidth > MAX_DIMENSION || targetHeight > MAX_DIMENSION) { showError(`Dimensions exceed limit (${MAX_DIMENSION}px).`); return; }
 
             resizeButton.disabled = true;
             progressContainer.classList.remove('hidden');
             resultSection.classList.add('hidden');
             downloadLink.classList.add('hidden');
             progressBar.style.width = '0%';
-
-            // Simulate progress
             let progress = 0;
             const interval = setInterval(() => {
                 progress += 20;
                 progressBar.style.width = `${Math.min(progress, 100)}%`;
-                if (progress >= 120) clearInterval(interval); // A bit more to ensure it hits 100 before timeout
+                if (progress >= 100) clearInterval(interval);
             }, 100);
 
-
-            // Perform resizing (wrapped in timeout to allow progress bar to show)
             setTimeout(() => {
                 const canvas = document.createElement('canvas');
-                canvas.width = targetWidth;
-                canvas.height = targetHeight;
+                canvas.width = targetWidth; canvas.height = targetHeight;
                 const ctx = canvas.getContext('2d');
-
                 const outputFormat = outputFormatSelect.value;
-                if (outputFormat === 'image/jpeg' || (originalType !== 'image/png' && outputFormat === 'image/png' && originalType !== 'image/webp')) { // Also check for webp transparency
-                    ctx.fillStyle = '#FFFFFF'; // Fill background for JPG or if converting transparent PNG/WEBP to non-transparent PNG (should be rare)
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                if (outputFormat === 'image/jpeg' || (originalType === 'image/png' && outputFormat !== 'image/png')) {
+                    ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0, 0, canvas.width, canvas.height);
                 }
-
-
-                ctx.drawImage(originalImage, 0, 0, targetWidth, targetHeight);
-
+                ctx.drawImage(originalImageObject, 0, 0, targetWidth, targetHeight);
                 const quality = parseFloat(imageQualitySlider.value);
                 let resizedImageDataURL;
-
                 try {
-                    if (outputFormat === 'image/png') {
-                        resizedImageDataURL = canvas.toDataURL('image/png');
-                    } else {
-                        resizedImageDataURL = canvas.toDataURL(outputFormat, quality);
-                    }
+                    resizedImageDataURL = outputFormat === 'image/png' ? canvas.toDataURL('image/png') : canvas.toDataURL(outputFormat, quality);
                 } catch (error) {
-                    console.error("Error creating data URL:", error);
-                    showError(`Error resizing image. Output might be too large or format incompatible. Try a different format or smaller dimensions.`);
-                    clearInterval(interval);
-                    progressContainer.classList.add('hidden');
-                    progressBar.style.width = '0%';
-                    resizeButton.disabled = false;
-                    return;
+                    showError(`Resize error: ${error.message}. Try smaller dimensions/format.`);
+                    clearInterval(interval); progressContainer.classList.add('hidden'); progressBar.style.width = '0%'; resizeButton.disabled = false; return;
                 }
-
-                clearInterval(interval); // Clear simulation
-                progressBar.style.width = '100%'; // Ensure it's full
-
-                setTimeout(() => { // Short delay for full progress bar visibility
-                    progressContainer.classList.add('hidden');
+                clearInterval(interval); progressBar.style.width = '100%';
+                setTimeout(() => {
+                    progressContainer.classList.add('hidden'); progressBar.style.width = '0%';
                     resizedImage.src = resizedImageDataURL;
-                    resizedDimensions.textContent = `Resized Dimensions: ${targetWidth}x${targetHeight}px`;
-
+                    resizedDimensions.textContent = `Resized: ${targetWidth}x${targetHeight}px`;
                     const head = 'data:' + outputFormat + ';base64,';
-                    const resizedFileSize = Math.round((resizedImageDataURL.length - head.length) * 3 / 4);
-                    const qualityText = outputFormat === 'image/png' ? 'N/A' : quality;
-                    resizedFileInfo.textContent = `Est. Size: ${formatBytes(resizedFileSize)} (Quality: ${qualityText}, Format: ${outputFormat.split('/')[1].toUpperCase()})`;
-
+                    const imageBase64 = resizedImageDataURL.substring(head.length);
+                    const resizedFileSizeBytes = Math.round(imageBase64.length * 0.75);
+                    const qualityText = outputFormat === 'image/png' ? 'N/A' : quality.toFixed(2);
+                    resizedFileInfo.textContent = `Est. Size: ${formatBytes(resizedFileSizeBytes)} (Quality: ${qualityText}, Format: ${outputFormat.split('/')[1].toUpperCase()})`;
                     resultSection.classList.remove('hidden');
                     downloadLink.href = resizedImageDataURL;
                     const extension = outputFormat.split('/')[1];
@@ -508,20 +348,8 @@
                     downloadLink.classList.remove('hidden');
                     resizeButton.disabled = false;
                 }, 300);
-            }, 100); // Small delay for UI update
+            }, 100);
         });
-
-        // --- Utility Functions ---
-        function formatBytes(bytes, decimals = 2) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const dm = decimals < 0 ? 0 : decimals;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-        }
-
-        // Initial setup
         toggleQualitySliderVisibility();
     </script>
 </body>
