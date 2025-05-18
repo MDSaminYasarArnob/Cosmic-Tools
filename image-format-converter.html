@@ -10,31 +10,39 @@
     <title>Cosmic Tools - Image Format Converter 🔄</title>
     <meta property="og:title" content="Cosmic Tools - Image Format Converter">
     <meta property="og:description" content="Convert images to various formats including PNG, JPEG, WebP, BMP, TIFF, GIF, HEIC, and AVIF. Fast, free, and easy to use.">
-    <meta property="og:image" content="https://yourdomain.com/og-image.jpg">
-    <meta property="og:url" content="https://yourdomain.com/converter">
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta property="og:image" content="https://yourdomain.com/og-image-converter.jpg">
+    <meta property="og:url" content="https://yourdomain.com/image-converter.html">
+    <link rel="icon" type="image/png" href="./favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
             crossorigin="anonymous"></script>
     <style>
-        body { background: linear-gradient(to bottom, #1a1a3d, #2c2c54); color: #ffffff; position: relative;
-            font-family: 'Montserrat', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+        body {
+            background: linear-gradient(to bottom, #1a1a3d, #2c2c54); color: #ffffff; position: relative;
+            font-family: 'Montserrat', sans-serif; min-height: 100vh; display: flex; flex-direction: column;
+        }
         main { flex-grow: 1; }
         h1, h2, h3, button, label { font-family: 'Orbitron', sans-serif; }
-        .starry-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat; opacity: 0.3; z-index: -1; }
+        .starry-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat; opacity: 0.3; z-index: -1;
+        }
         .dragover { border: 2px dashed #4ecdc4; background-color: rgba(78, 205, 196, 0.1); }
         .progress-bar { height: 8px; background-color: #2c2c54; border-radius: 4px; overflow: hidden; }
         .progress-bar-fill { height: 100%; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); transition: width 0.3s ease-in-out; }
         .error-message { color: #ff6b6b; font-size: 0.875rem; margin-top: 0.5rem; font-weight: 800; }
         .gradient-button { background: linear-gradient(45deg, #ff6b6b, #4ecdc4); transition: background 0.3s ease; }
         .gradient-button:hover { background: linear-gradient(45deg, #4ecdc4, #ff6b6b); }
-        .custom-select, .custom-range { background-color: #2c3e50; border: 1px solid #4a5568; color: #ffffff;
-            padding: 0.75rem; border-radius: 0.375rem; width: 100%; font-family: 'Orbitron', sans-serif; }
+        .custom-select, .custom-range {
+            background-color: #2c3e50; border: 1px solid #4a5568; color: #ffffff;
+            padding: 0.75rem; border-radius: 0.375rem; width: 100%; font-family: 'Orbitron', sans-serif;
+        }
         .custom-select:focus, .custom-range:focus { outline: none; border-color: #4ecdc4; box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.5); }
-        .custom-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px;
-            background: #4ecdc4; cursor: pointer; border-radius: 50%; }
+        .custom-range::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none; width: 20px; height: 20px;
+            background: #4ecdc4; cursor: pointer; border-radius: 50%;
+        }
         .custom-range::-moz-range-thumb { width: 20px; height: 20px; background: #4ecdc4; cursor: pointer; border-radius: 50%; border: none; }
         .custom-label { font-weight: bold; color: #cbd5e0; margin-bottom: 0.5rem; display: block; }
         .accent-pink-500 { accent-color: #ec4899; }
@@ -49,7 +57,8 @@
                     <h1 class="text-4xl font-bold text-white">Cosmic Tools - Image Format Converter 🔄</h1>
                     <p class="mt-2 text-lg text-gray-300">Convert your images to various formats</p>
                 </div>
-                <a href="Cosmic-Tools/index.html" class="text-white text-lg font-bold gradient-button py-2 px-4 rounded-md">
+                <!-- CORRECTED BACK BUTTON HYPERLINK for GitHub Project Page -->
+                <a href="/Cosmic-Tools/index.html" class="text-white text-lg font-bold gradient-button py-2 px-4 rounded-md">
                     ← Back to Tools
                 </a>
             </div>
@@ -58,7 +67,7 @@
     <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div class="mb-6">
             <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid"
-                 data-ad-client="ca-pub-YOUR_ADSENSE_PUBLISHER_ID" data-ad-slot="YOUR_TOP_BANNER_AD_SLOT_ID"></ins>
+                 data-ad-client="ca-pub-YOUR_ADSENSE_PUBLISHER_ID" data-ad-slot="YOUR_CONVERTER_TOP_AD_SLOT_ID"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
         <div class="flex flex-col lg:flex-row gap-6">
@@ -68,7 +77,7 @@
                     <label class="custom-label mb-2">Select Image</label>
                     <div id="dropZone" class="border-2 border-dashed border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:bg-gray-700 transition-colors">
                         <p class="text-gray-400 text-lg">Drag and drop your image here or click to select 🖼️</p>
-                        <input type="file" id="imageInput" accept="image/*,.heic,.heif,.avif" class="hidden">
+                        <input type="file" id="imageInput" accept="image/*,.heic,.heif,.avif,.tiff,.tif" class="hidden">
                     </div>
                     <p id="errorMessage" class="error-message hidden"></p>
                 </div>
@@ -77,8 +86,8 @@
                     <img id="previewImage" class="mt-2 max-w-full h-auto rounded-lg hidden shadow-md" alt="Image Preview">
                 </div>
                 <div class="mb-4">
-                    <label for="outputFormat" class="custom-label">Output Format</label>
-                    <select id="outputFormat" class="custom-select text-lg">
+                    <label for="outputFormatSelect" class="custom-label">Output Format</label>
+                    <select id="outputFormatSelect" class="custom-select text-lg">
                         <option value="image/png">PNG</option>
                         <option value="image/jpeg" selected>JPEG</option>
                         <option value="image/webp">WebP</option>
@@ -91,8 +100,8 @@
                     <p class="text-sm text-gray-400 mt-1 font-bold font-sans">Note: HEIC, AVIF, and TIFF may convert to PNG due to browser support.</p>
                 </div>
                 <div class="mb-4">
-                    <label for="quality" class="custom-label">Quality (JPEG/WebP): <span id="qualityValue" class="text-pink-400">0.80</span></label>
-                    <input type="range" id="quality" min="0.1" max="1" step="0.01" value="0.80" class="custom-range w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-pink-500">
+                    <label for="qualitySlider" class="custom-label">Quality (JPEG/WebP): <span id="qualityValueDisplay" class="text-pink-400">0.80</span></label>
+                    <input type="range" id="qualitySlider" min="0.1" max="1" step="0.01" value="0.80" class="custom-range w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-pink-500">
                 </div>
                 <button id="convertButton" class="w-full py-3 px-4 text-lg text-white rounded-md gradient-button font-bold disabled:opacity-50 disabled:cursor-not-allowed" disabled>Convert Image 🔄</button>
                 <div id="progressContainer" class="mt-4 hidden">
@@ -110,7 +119,7 @@
             <aside class="hidden lg:block lg:w-1/3 space-y-6">
                 <div>
                     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
-                         data-ad-slot="YOUR_SIDEBAR_AD_SLOT_ID_1" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                         data-ad-slot="YOUR_CONVERTER_SIDEBAR_AD_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins>
                     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 </div>
             </aside>
@@ -120,8 +129,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p class="text-gray-300 text-lg font-bold">Copyright © <span id="currentYear"></span> Cosmic Tools. All rights reserved.</p>
             <nav class="mt-4 flex justify-center space-x-4">
-                <a href="/privacy" class="text-gray-300 hover:text-white text-base font-bold">Privacy Policy 📜</a>
-                <a href="/terms" class="text-gray-300 hover:text-white text-base font-bold">Terms of Service 📝</a>
+                <a href="/Cosmic-Tools/privacy.html" class="text-gray-300 hover:text-white text-base font-bold">Privacy Policy 📜</a>
+                <a href="/Cosmic-Tools/terms.html" class="text-gray-300 hover:text-white text-base font-bold">Terms of Service 📝</a>
             </nav>
         </div>
     </footer>
@@ -131,9 +140,9 @@
         const convertButton = document.getElementById('convertButton');
         const previewImage = document.getElementById('previewImage');
         const errorMessage = document.getElementById('errorMessage');
-        const outputFormatSelect = document.getElementById('outputFormat');
-        const qualitySlider = document.getElementById('quality');
-        const qualityValueDisplay = document.getElementById('qualityValue');
+        const outputFormatSelect = document.getElementById('outputFormatSelect');
+        const qualitySlider = document.getElementById('qualitySlider');
+        const qualityValueDisplay = document.getElementById('qualityValueDisplay');
         const progressContainer = document.getElementById('progressContainer');
         const progressBar = document.getElementById('progressBar');
         const resultSection = document.getElementById('resultSection');
@@ -152,6 +161,15 @@
             setTimeout(() => errorMessage.classList.add('hidden'), 5000);
         }
 
+        function formatBytes(bytes, decimals = 2) {
+            if (!+bytes) return '0 Bytes';
+            const k = 1024;
+            const dm = decimals < 0 ? 0 : decimals;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+        }
+
         dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
         dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
         dropZone.addEventListener('drop', (e) => {
@@ -163,6 +181,8 @@
         imageInput.addEventListener('change', () => { if (imageInput.files.length > 0) handleImageUpload(imageInput.files[0]); });
 
         function handleImageUpload(file) {
+            originalFileName = file.name.substring(0, file.name.lastIndexOf('.')) || 'image';
+            currentFile = file;
             const acceptedMimeTypes = ['image/png', 'image/jpeg', 'image/webp', 'image/gif', 'image/bmp', 'image/tiff', 'image/heic', 'image/heif', 'image/avif'];
             const acceptedExtensions = ['.png', '.jpg', '.jpeg', '.webp', '.gif', '.bmp', '.tif', '.tiff', '.heic', '.heif', '.avif'];
             let isAccepted = false;
@@ -179,8 +199,6 @@
                 imageInput.value = ''; convertButton.disabled = true; previewImage.classList.add('hidden'); currentFile = null; return;
             }
 
-            currentFile = file;
-            originalFileName = file.name.substring(0, file.name.lastIndexOf('.')) || 'image';
             convertButton.disabled = false; errorMessage.classList.add('hidden');
             const reader = new FileReader();
             reader.onload = (e) => { previewImage.src = e.target.result; previewImage.classList.remove('hidden'); };
@@ -230,7 +248,7 @@
                 const qualityValue = parseFloat(qualitySlider.value);
                 let convertedDataUrl;
                 let finalFormatMime = targetFormat;
-                let finalExtension = targetFormat.split('/')[1];
+                let finalExtension = targetFormat.split('/')[1] || targetFormat.substring(targetFormat.lastIndexOf('.') + 1);
 
                 try {
                     if (targetFormat === 'image/heic' || targetFormat === 'image/avif' || targetFormat === 'image/tiff') {
@@ -243,29 +261,32 @@
                         showError(reason + ". For native support, server-side tools are often needed.");
                     } else if (targetFormat === 'image/png' || targetFormat === 'image/bmp' || targetFormat === 'image/gif') {
                         convertedDataUrl = canvas.toDataURL(targetFormat);
-                    } else {
+                    } else { // JPEG, WebP
                         convertedDataUrl = canvas.toDataURL(targetFormat, qualityValue);
                     }
                 } catch (ex) {
-                    showError(`Conversion error for ${targetFormat.split('/')[1].toUpperCase()}: ${ex.message}. Format might not be supported.`);
+                    showError(`Conversion error for ${finalExtension.toUpperCase()}: ${ex.message}. Format might not be supported.`);
                     console.error('Conversion error:', ex);
                     clearInterval(interval); progressContainer.classList.add('hidden'); convertButton.disabled = false; progressBar.style.width = '0%'; return;
                 }
 
                 if (!convertedDataUrl || convertedDataUrl === 'data:,') {
-                    showError('Error generating converted image.');
+                    showError('Error generating converted image data.');
                     clearInterval(interval); progressContainer.classList.add('hidden'); convertButton.disabled = false; progressBar.style.width = '0%'; return;
                 }
                 clearInterval(interval); progressBar.style.width = '100%';
                 setTimeout(() => {
                     progressContainer.classList.add('hidden'); progressBar.style.width = '0%';
                     resultSection.classList.remove('hidden');
-                    originalFormatText.textContent = `Original: ${currentFile.type ? currentFile.type.split('/')[1].toUpperCase() : 'Unknown'}`;
-                    convertedFormatText.textContent = `Converted To: ${finalExtension.toUpperCase()}`;
+                    originalFormatText.textContent = `Original: ${currentFile.type ? currentFile.type.split('/')[1].toUpperCase() : 'Unknown'} (${formatBytes(currentFile.size)})`;
+                    const head = 'data:' + finalFormatMime + ';base64,';
+                    const imageBase64 = convertedDataUrl.substring(head.length);
+                    const convertedFileSizeBytes = Math.round(imageBase64.length * 0.75);
+                    convertedFormatText.textContent = `Converted To: ${finalExtension.toUpperCase()} (${formatBytes(convertedFileSizeBytes)})`;
                     convertedImage.src = convertedDataUrl;
                     downloadLink.href = convertedDataUrl;
                     downloadLink.download = `${originalFileName}_converted.${finalExtension}`;
-                    downloadLink.onclick = () => {}; // Data URLs don't need revoking
+                    downloadLink.onclick = () => {};
                     convertButton.disabled = false;
                  }, 300);
             };
