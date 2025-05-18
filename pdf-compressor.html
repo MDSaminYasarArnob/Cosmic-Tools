@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cosmic Tools PDF Compressor: Attempt to reduce PDF file size using client-side processing. Results vary.">
+    <meta name="keywords" content="PDF compressor, compress PDF online, reduce PDF size, free PDF tool, cosmic tools, client-side PDF compression">
+    <meta name="author" content="Cosmic Tools">
+    <meta name="robots" content="index, follow">
+    <title>Cosmic Tools - PDF Compressor  छोटा करें</title>
+    <meta property="og:title" content="Cosmic Tools - PDF Compressor">
+    <meta property="og:description" content="Attempt to reduce PDF file size with client-side processing. Actual compression achieved depends on the PDF content and structure.">
+    <meta property="og:image" content="https://yourdomain.com/og-image-pdf-compressor.jpg">
+    <meta property="og:url" content="https://yourdomain.com/pdf-compressor.html">
+    <link rel="icon" type="image/png" href="./favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #1a1a3d, #2c2c54); color: #ffffff; position: relative;
+            font-family: 'Montserrat', sans-serif; min-height: 100vh; display: flex; flex-direction: column;
+        }
+        main { flex-grow: 1; }
+        h1, h2, h3, button, label, select { font-family: 'Orbitron', sans-serif; }
+        .starry-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat; opacity: 0.3; z-index: -1;
+        }
+        .dragover { border: 2px dashed #4ecdc4; background-color: rgba(78, 205, 196, 0.1); }
+        .progress-bar { height: 8px; background-color: #2c2c54; border-radius: 4px; overflow: hidden; }
+        .progress-bar-fill { height: 100%; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); transition: width 0.3s ease-in-out; }
+        .message { font-size: 0.875rem; margin-top: 0.5rem; font-weight: 800; }
+        .error-message { color: #ff6b6b; }
+        .success-message { color: #4ecdc4; }
+        .info-message { color: #a0aec0; } /* Tailwind gray-500 */
+        .gradient-button { background: linear-gradient(45deg, #ff6b6b, #4ecdc4); transition: background 0.3s ease; }
+        .gradient-button:hover:not(:disabled) { background: linear-gradient(45deg, #4ecdc4, #ff6b6b); }
+        .gradient-button:disabled { background: linear-gradient(45deg, #535353, #7a7a7a); cursor: not-allowed;}
+        .custom-select, .custom-range {
+            background-color: #2c3e50; border: 1px solid #4a5568; color: #ffffff;
+            padding: 0.75rem; border-radius: 0.375rem; width: 100%;
+        }
+        .custom-select:focus, .custom-range:focus { outline: none; border-color: #4ecdc4; box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.5); }
+        .custom-range { accent-color: #ec4899; }
+        #pdfPreviewCanvas { border: 1px solid #4a5568; max-width: 100%; height: auto; }
+        .checkbox-label { font-family: 'Montserrat', sans-serif; font-weight: 600;}
+    </style>
+</head>
+<body class="font-extrabold">
+    <div class="starry-bg"></div>
+    <header class="bg-opacity-90 bg-gray-900 shadow-lg">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-4xl font-bold text-white">Cosmic Tools - PDF Compressor <span class="text-2xl">छोटा करें</span></h1>
+                    <p class="mt-2 text-lg text-gray-300">Attempt to reduce PDF file size (Client-Side)</p>
+                </div>
+                <a href="/Cosmic-Tools/index.html" class="text-white text-lg font-bold gradient-button py-2 px-4 rounded-md">
+                    ← Back to Tools
+                </a>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 w-full">
+        <div class="mb-6 mx-auto max-w-3xl">
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;"
+                 data-ad-layout="in-article"
+                 data-ad-format="fluid"
+                 data-ad-client="ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
+                 data-ad-slot="YOUR_PDF_COMPRESSOR_TOP_AD_SLOT_ID"></ins>
+            <script> (adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+        <div class="flex flex-col lg:flex-row gap-6">
+            <div class="flex-1 bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold text-white mb-4">Compress Your PDF 📄⚙️</h2>
+                <div class="mb-4">
+                    <label class="block text-base font-bold text-gray-300 mb-2">Select PDF File</label>
+                    <div id="dropZone" class="border-2 border-dashed border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:bg-gray-700 transition-colors">
+                        <p class="text-gray-400 text-lg">Drag and drop PDF here or click to select 📂</p>
+                        <input type="file" id="pdfInput" accept="application/pdf" class="hidden">
+                    </div>
+                    <p id="fileNameDisplay" class="text-sm text-gray-400 mt-2 font-sans font-semibold"></p>
+                    <p id="userMessage" class="message mt-2 font-sans font-semibold hidden"></p>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-base font-bold text-gray-300">PDF Preview (First Page)</label>
+                    <canvas id="pdfPreviewCanvas" class="mt-2 rounded-lg shadow-md hidden"></canvas>
+                </div>
+
+                <div class="mb-4">
+                    <label for="compressionLevelSlider" class="block text-base font-bold text-gray-300">"Re-save Effort" (Symbolic):
+                        <span id="qualityValueDisplay" class="text-pink-400">0.75</span>
+                    </label>
+                    <input type="range" id="compressionLevelSlider" min="0.1" max="1" step="0.05" value="0.75" class="mt-1 w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer custom-range">
+                    <p class="text-sm text-gray-400 mt-1 font-sans font-normal">This setting has limited direct impact on deep compression of existing PDF content client-side. It reflects general effort.</p>
+                </div>
+
+                <div class="mb-4 flex items-center">
+                    <input type="checkbox" id="removeMetadataCheckbox" class="h-5 w-5 text-pink-500 focus:ring-pink-400 border-gray-500 rounded bg-gray-700 custom-range">
+                    <label for="removeMetadataCheckbox" class="ml-2 text-gray-300 checkbox-label">Attempt to Remove Metadata (minor size reduction)</label>
+                </div>
+
+
+                <button id="compressButton" class="w-full py-3 px-4 text-lg text-white rounded-md gradient-button font-bold" disabled>Compress PDF</button>
+
+                <div id="progressContainer" class="mt-4 hidden">
+                    <p id="progressText" class="text-base text-gray-300 mb-2 font-bold">Compressing PDF...</p>
+                    <div class="progress-bar">
+                        <div id="progressBar" class="progress-bar-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div id="resultSection" class="mt-6 hidden">
+                    <h3 class="text-xl font-bold text-white mb-2">Compression Result:</h3>
+                    <p id="originalSizeText" class="text-sm text-gray-300 font-sans"></p>
+                    <p id="compressedSizeText" class="text-sm text-gray-300 font-sans"></p>
+                    <p id="sizeReductionText" class="message text-sm font-sans font-bold"></p> <!-- Class will be added dynamically -->
+                    <div class="mt-4">
+                        <a id="downloadLink" href="#" class="inline-block py-3 px-6 text-lg text-white rounded-md gradient-button font-bold opacity-50 pointer-events-none">Download Processed PDF 💾</a>
+                    </div>
+                </div>
+            </div>
+            <aside class="hidden lg:block lg:w-96 xl:w-1/3 space-y-6 flex-shrink-0">
+                <div class="bg-gray-800 bg-opacity-50 p-4 rounded-lg shadow-md min-h-[250px] flex items-center justify-center">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
+                         data-ad-slot="YOUR_PDF_COMPRESSOR_SIDEBAR_AD_SLOT_ID"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
+                </div>
+                 <div class="bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg text-gray-300 font-sans">
+                    <h3 class="text-xl font-bold text-white mb-3 font-orbitron">About Client-Side PDF Compression</h3>
+                    <p class="text-sm leading-relaxed">
+                        This tool attempts to reduce PDF file size directly in your browser using the PDF-Lib library. Client-side PDF compression capabilities are limited compared to server-side tools.
+                    </p>
+                    <p class="text-sm leading-relaxed mt-2">
+                        The primary action is re-saving the PDF structure. The "Re-save Effort" slider and "Remove Metadata" option might offer minor size reductions for some PDFs. Significant compression, especially for image-heavy documents, typically requires more advanced processing not feasible purely in the browser.
+                    </p>
+                    <p class="text-sm leading-relaxed mt-2">
+                        Expect modest results. For substantial compression, dedicated desktop or server-based solutions are recommended.
+                    </p>
+                </div>
+            </aside>
+        </div>
+         <section class="mt-10 bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-white mb-4">How to Use PDF Compressor 📜</h2>
+            <ol class="list-decimal list-inside text-gray-300 space-y-2 font-sans font-normal">
+                <li><strong>Upload PDF:</strong> Drag and drop your PDF file, or click to select. A preview of the first page will appear.</li>
+                <li><strong>Set Options (Optional):</strong>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Adjust "Re-save Effort": This setting has a limited effect.</li>
+                        <li>Check "Attempt to Remove Metadata" for a potentially very small size decrease.</li>
+                    </ul>
+                </li>
+                <li><strong>Compress:</strong> Click the "Compress PDF" button.</li>
+                <li><strong>Download:</strong> If the processed file is smaller or the same size, a download link will become active. Note that size reduction may be minimal or none for many PDFs.</li>
+            </ol>
+        </section>
+    </main>
+    <footer class="bg-gray-900 bg-opacity-90 mt-10 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-300 text-lg font-bold">Copyright © <span id="currentYear"></span> Cosmic Tools. All rights reserved.</p>
+            <nav class="mt-4 flex justify-center space-x-4">
+                <a href="/Cosmic-Tools/privacy.html" class="text-gray-300 hover:text-white text-base font-bold">Privacy Policy 📜</a>
+                <a href="/Cosmic-Tools/terms.html" class="text-gray-300 hover:text-white text-base font-bold">Terms of Service 📝</a>
+            </nav>
+        </div>
+    </footer>
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const pdfInput = document.getElementById('pdfInput');
+        const compressButton = document.getElementById('compressButton');
+        const userMessage = document.getElementById('userMessage');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const resultSection = document.getElementById('resultSection');
+        const originalSizeText = document.getElementById('originalSizeText');
+        const compressedSizeText = document.getElementById('compressedSizeText');
+        const sizeReductionText = document.getElementById('sizeReductionText');
+        const downloadLink = document.getElementById('downloadLink');
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+        const compressionLevelSlider = document.getElementById('compressionLevelSlider');
+        const qualityValueDisplay = document.getElementById('qualityValueDisplay');
+        const removeMetadataCheckbox = document.getElementById('removeMetadataCheckbox');
+        const pdfPreviewCanvas = document.getElementById('pdfPreviewCanvas');
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        let currentFile = null;
+        let originalFileName = 'document';
+
+        if (typeof pdfjsLib !== 'undefined' && pdfjsLib.GlobalWorkerOptions) {
+            pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js`;
+        } else { console.warn("PDF.js library for preview not loaded."); }
+
+        if (typeof PDFLib === 'undefined') {
+            console.error("PDF-Lib.js library not loaded.");
+            showMessage("Critical error: PDF manipulation library failed to load. Please refresh.", true);
+        }
+
+        compressionLevelSlider.addEventListener('input', () => {
+            qualityValueDisplay.textContent = parseFloat(compressionLevelSlider.value).toFixed(2);
+        });
+
+        function showMessage(message, isError = false, duration = 7000) {
+            userMessage.textContent = message;
+            userMessage.className = 'message mt-2 font-sans font-semibold ';
+            userMessage.classList.add(isError ? 'error-message' : 'success-message', !isError && !message.toLowerCase().includes('error') ? 'info-message' : '');
+             if(message.toLowerCase().includes('reduced') || message.toLowerCase().includes('complete')) userMessage.classList.replace('info-message', 'success-message');
+
+
+            userMessage.classList.remove('hidden');
+            setTimeout(() => userMessage.classList.add('hidden'), duration);
+        }
+
+        function resetUIState() {
+            compressButton.disabled = true;
+            downloadLink.style.pointerEvents = 'none';
+            downloadLink.classList.add('opacity-50');
+            downloadLink.href = "#";
+            fileNameDisplay.textContent = '';
+            pdfPreviewCanvas.classList.add('hidden');
+            const ctx = pdfPreviewCanvas.getContext('2d');
+            ctx.clearRect(0, 0, pdfPreviewCanvas.width, pdfPreviewCanvas.height);
+            currentFile = null;
+            resultSection.classList.add('hidden');
+            progressContainer.classList.add('hidden');
+            progressBar.style.width = '0%';
+            pdfInput.value = '';
+            userMessage.classList.add('hidden');
+        }
+
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault(); dropZone.classList.remove('dragover');
+            if (e.dataTransfer.files.length > 0) handleFileUpload(e.dataTransfer.files[0]);
+            else showMessage('Please drop a PDF file.', true);
+        });
+        dropZone.addEventListener('click', () => pdfInput.click());
+        pdfInput.addEventListener('change', () => { if (pdfInput.files.length > 0) handleFileUpload(pdfInput.files[0]); });
+
+        async function renderPdfPreview(file) {
+            if (typeof pdfjsLib === 'undefined' || !pdfjsLib.getDocument) {
+                console.warn("PDF.js not available for preview.");
+                pdfPreviewCanvas.classList.add('hidden');
+                return;
+            }
+            const arrayBuffer = await file.arrayBuffer();
+            try {
+                const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
+                const pdf = await loadingTask.promise;
+                const page = await pdf.getPage(1);
+                const viewport = page.getViewport({ scale: 0.3 }); // Adjusted scale
+                pdfPreviewCanvas.height = viewport.height;
+                pdfPreviewCanvas.width = viewport.width;
+                const context = pdfPreviewCanvas.getContext('2d');
+                await page.render({ canvasContext: context, viewport: viewport }).promise;
+                pdfPreviewCanvas.classList.remove('hidden');
+            } catch (err) {
+                console.error("Error rendering PDF preview:", err);
+                pdfPreviewCanvas.classList.add('hidden');
+                showMessage("Could not render PDF preview. File might be corrupted.", true, 4000);
+            }
+        }
+
+        function handleFileUpload(file) {
+            resetUIState();
+            if (file.type !== 'application/pdf') {
+                showMessage('Invalid file type. Please select a PDF file.', true);
+                return;
+            }
+            currentFile = file;
+            originalFileName = file.name.substring(0, file.name.lastIndexOf('.')) || 'document';
+            fileNameDisplay.textContent = `Selected: ${file.name} (${formatBytes(file.size)})`;
+            compressButton.disabled = false;
+            renderPdfPreview(file);
+        }
+
+        function formatBytes(bytes, decimals = 2) {
+            if (!+bytes) return '0 Bytes';
+            const k = 1024;
+            const dm = decimals < 0 ? 0 : decimals;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+        }
+
+        compressButton.addEventListener('click', async () => {
+            if (!currentFile) { showMessage('Please select a PDF file first.', true); return; }
+            if (typeof PDFLib === 'undefined') {
+                showMessage("PDF processing library is not available.", true); return;
+            }
+
+            compressButton.disabled = true;
+            downloadLink.style.pointerEvents = 'none';
+            downloadLink.classList.add('opacity-50');
+            progressContainer.classList.remove('hidden');
+            progressText.textContent = 'Preparing PDF...';
+            resultSection.classList.add('hidden');
+            progressBar.style.width = '0%';
+
+            const fileReader = new FileReader();
+            fileReader.onload = async function() {
+                const pdfBytes = this.result;
+                try {
+                    progressText.textContent = 'Loading PDF Document...';
+                    progressBar.style.width = '20%';
+                    const { PDFDocument, MetadataAuthor } = PDFLib; // Destructure for clarity
+                    const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+                    progressBar.style.width = '50%';
+                    progressText.textContent = 'Processing PDF structure...';
+
+                    if (removeMetadataCheckbox.checked) {
+                        console.log("Attempting to remove metadata.");
+                        pdfDoc.setTitle('');
+                        pdfDoc.setAuthor('');
+                        pdfDoc.setSubject('');
+                        pdfDoc.setKeywords([]);
+                        pdfDoc.setProducer('Cosmic Tools PDF Compressor'); // Can set your tool as producer
+                        pdfDoc.setCreator('Cosmic Tools'); // Can set your tool as creator
+                        // pdfDoc.setCreationDate(new Date()); // Setting new dates or removing them
+                        // pdfDoc.setModificationDate(new Date());
+                    }
+
+                    // The "compressionLevelSlider.value" is mostly symbolic here.
+                    // pdf-lib's save() already tries to be efficient.
+                    // True image re-compression is out of scope for simple client-side pdf-lib use.
+                    const compressedPdfBytes = await pdfDoc.save({ useObjectStreams: true });
+
+                    progressBar.style.width = '90%';
+                    progressText.textContent = 'Finalizing...';
+
+                    const originalSizeBytes = currentFile.size;
+                    const compressedSizeBytes = compressedPdfBytes.byteLength;
+
+                    originalSizeText.textContent = `Original Size: ${formatBytes(originalSizeBytes)}`;
+                    compressedSizeText.textContent = `Compressed Size: ${formatBytes(compressedSizeBytes)}`;
+
+                    let reductionAchieved = false;
+                    if (compressedSizeBytes < originalSizeBytes) {
+                        const reduction = originalSizeBytes - compressedSizeBytes;
+                        const percentage = ((reduction / originalSizeBytes) * 100).toFixed(2);
+                        sizeReductionText.textContent = `Reduced by: ${formatBytes(reduction)} (${percentage}%)`;
+                        sizeReductionText.className = 'message text-sm text-green-400 font-sans font-bold';
+                        reductionAchieved = true;
+                        showMessage(`Compression attempt complete. Size reduced by ${percentage}%.`, false, 5000);
+                    } else if (compressedSizeBytes > originalSizeBytes) {
+                        sizeReductionText.textContent = `Size increased by: ${formatBytes(compressedSizeBytes - originalSizeBytes)}. Original might have been more optimized.`;
+                        sizeReductionText.className = 'message text-sm text-yellow-500 font-sans font-bold'; // Changed to yellow
+                         showMessage(`Processed. File size slightly increased. Original may have been highly optimized.`, false, 10000);
+                    } else {
+                        sizeReductionText.textContent = 'No significant size change achieved.';
+                        sizeReductionText.className = 'message text-sm info-message font-sans font-bold';
+                        showMessage('Processed. No significant size change achieved with client-side methods.', false, 10000);
+                    }
+
+                    const blob = new Blob([compressedPdfBytes], { type: 'application/pdf' });
+                    const url = URL.createObjectURL(blob);
+                    downloadLink.href = url;
+                    downloadLink.download = `${originalFileName}_compressed.pdf`;
+                    
+                    resultSection.classList.remove('hidden');
+                    // Enable download even if size increased, as it's a "processed" file. User can decide.
+                    downloadLink.style.pointerEvents = 'auto';
+                    downloadLink.classList.remove('opacity-50');
+
+                } catch (error) {
+                    console.error('Error compressing PDF:', error);
+                    showMessage('Error compressing PDF: ' + error.message + '. File might be corrupted or unsupported.', true);
+                } finally {
+                     setTimeout(() => {
+                        progressContainer.classList.add('hidden');
+                        progressBar.style.width = '0%';
+                        compressButton.disabled = false;
+                    }, 500);
+                }
+            };
+            fileReader.onerror = () => {
+                showMessage('Error reading the PDF file for compression.', true);
+                progressContainer.classList.add('hidden');
+                compressButton.disabled = false;
+                progressBar.style.width = '0%';
+            };
+            fileReader.readAsArrayBuffer(currentFile);
+        });
+        resetUIState(); // Call on page load
+    </script>
+</body>
+</html>
