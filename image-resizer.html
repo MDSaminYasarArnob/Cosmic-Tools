@@ -114,8 +114,15 @@
 
     <header class="bg-opacity-90 bg-gray-900 shadow-lg">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <h1 class="text-4xl font-bold text-white">Cosmic Tools - Image Resizer 🛠️</h1>
-            <p class="mt-2 text-lg text-gray-300">Resize and optimize your images with precision</p>
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-4xl font-bold text-white">Cosmic Tools - Image Resizer 🛠️</h1>
+                    <p class="mt-2 text-lg text-gray-300">Resize and optimize your images with precision</p>
+                </div>
+                <a href="Cosmic-Tools/index.html" class="text-white text-lg font-bold gradient-button py-2 px-4 rounded-md">
+                    ← Back to Tools
+                </a>
+            </div>
         </div>
     </header>
 
@@ -454,10 +461,11 @@
                 const ctx = canvas.getContext('2d');
 
                 const outputFormat = outputFormatSelect.value;
-                if (outputFormat === 'image/jpeg' || (originalType !== 'image/png' && outputFormat === 'image/png')) {
-                    ctx.fillStyle = '#FFFFFF';
+                if (outputFormat === 'image/jpeg' || (originalType !== 'image/png' && outputFormat === 'image/png' && originalType !== 'image/webp')) { // Also check for webp transparency
+                    ctx.fillStyle = '#FFFFFF'; // Fill background for JPG or if converting transparent PNG/WEBP to non-transparent PNG (should be rare)
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
                 }
+
 
                 ctx.drawImage(originalImage, 0, 0, targetWidth, targetHeight);
 
@@ -472,9 +480,10 @@
                     }
                 } catch (error) {
                     console.error("Error creating data URL:", error);
-                    showError(`Error resizing image. Try a different format or quality.`);
+                    showError(`Error resizing image. Output might be too large or format incompatible. Try a different format or smaller dimensions.`);
                     clearInterval(interval);
                     progressContainer.classList.add('hidden');
+                    progressBar.style.width = '0%';
                     resizeButton.disabled = false;
                     return;
                 }
