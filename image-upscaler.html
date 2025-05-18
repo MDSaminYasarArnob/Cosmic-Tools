@@ -8,87 +8,37 @@
     <meta name="author" content="Cosmic Tools">
     <meta name="robots" content="index, follow">
     <title>Cosmic Tools - Image Upscaler 🔍</title>
-    <!-- Open Graph for Social Media -->
     <meta property="og:title" content="Cosmic Tools - Image Upscaler">
     <meta property="og:description" content="Upscale images online with adjustable resolution settings. Fast, free, and easy to use.">
-    <meta property="og:image" content="https://yourdomain.com/og-image.jpg"> <!-- Replace with your actual OG image URL -->
-    <meta property="og:url" content="https://yourdomain.com/upscaler"> <!-- Replace with your actual URL -->
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicon.png"> <!-- Ensure this path is correct -->
-    <!-- Google Fonts -->
+    <meta property="og:image" content="https://yourdomain.com/og-image-upscaler.jpg"> <!-- Specific OG Image -->
+    <meta property="og:url" content="https://yourdomain.com/image-upscaler.html"> <!-- Specific URL -->
+    <link rel="icon" type="image/png" href="./favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google AdSense Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
-            crossorigin="anonymous"></script> <!-- Replace with your AdSense ID -->
+            crossorigin="anonymous"></script> <!-- REPLACE YOUR_ADSENSE_PUBLISHER_ID -->
     <style>
         body {
-            background: linear-gradient(to bottom, #1a1a3d, #2c2c54);
-            color: #ffffff;
-            position: relative;
-            font-family: 'Montserrat', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            background: linear-gradient(to bottom, #1a1a3d, #2c2c54); color: #ffffff; position: relative;
+            font-family: 'Montserrat', sans-serif; min-height: 100vh; display: flex; flex-direction: column;
         }
-        main {
-            flex-grow: 1;
-        }
-        h1, h2, h3, button, label, select {
-            font-family: 'Orbitron', sans-serif;
-        }
+        main { flex-grow: 1; }
+        h1, h2, h3, button, label, select { font-family: 'Orbitron', sans-serif; }
         .starry-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-            opacity: 0.3;
-            z-index: -1;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat; opacity: 0.3; z-index: -1;
         }
-        .dragover {
-            border: 2px dashed #4ecdc4;
-            background-color: rgba(78, 205, 196, 0.1);
-        }
-        .progress-bar {
-            height: 8px;
-            background-color: #2c2c54;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        .progress-bar-fill {
-            height: 100%;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            transition: width 0.3s ease-in-out;
-        }
-        .error-message {
-            color: #ff6b6b;
-            font-size: 0.875rem;
-            margin-top: 0.5rem;
-            font-weight: 800;
-        }
-        .gradient-button {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            transition: background 0.3s ease;
-        }
-        .gradient-button:hover {
-            background: linear-gradient(45deg, #4ecdc4, #ff6b6b);
-        }
+        .dragover { border: 2px dashed #4ecdc4; background-color: rgba(78, 205, 196, 0.1); }
+        .progress-bar { height: 8px; background-color: #2c2c54; border-radius: 4px; overflow: hidden; }
+        .progress-bar-fill { height: 100%; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); transition: width 0.3s ease-in-out; }
+        .error-message { color: #ff6b6b; font-size: 0.875rem; margin-top: 0.5rem; font-weight: 800; }
+        .gradient-button { background: linear-gradient(45deg, #ff6b6b, #4ecdc4); transition: background 0.3s ease; }
+        .gradient-button:hover { background: linear-gradient(45deg, #4ecdc4, #ff6b6b); }
         .custom-select {
-            background-color: #2c3e50;
-            border: 1px solid #4a5568;
-            color: #ffffff;
-            padding: 0.75rem;
-            border-radius: 0.375rem;
-            width: 100%;
+            background-color: #2c3e50; border: 1px solid #4a5568; color: #ffffff;
+            padding: 0.75rem; border-radius: 0.375rem; width: 100%;
         }
-        .custom-select:focus {
-            outline: none;
-            border-color: #4ecdc4;
-            box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.5);
-        }
+        .custom-select:focus { outline: none; border-color: #4ecdc4; box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.5); }
     </style>
 </head>
 <body class="font-extrabold">
@@ -100,6 +50,7 @@
                     <h1 class="text-4xl font-bold text-white">Cosmic Tools - Image Upscaler 🔍</h1>
                     <p class="mt-2 text-lg text-gray-300">Enhance your images with adjustable upscale levels</p>
                 </div>
+                <!-- BACK BUTTON HYPERLINK: Ensure 'Cosmic-Tools/index.html' path is correct -->
                 <a href="Cosmic-Tools/index.html" class="text-white text-lg font-bold gradient-button py-2 px-4 rounded-md">
                     ← Back to Tools
                 </a>
@@ -114,7 +65,7 @@
                  data-ad-layout="in-article"
                  data-ad-format="fluid"
                  data-ad-client="ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
-                 data-ad-slot="YOUR_TOP_BANNER_AD_SLOT_ID"></ins> <!-- Replace AdSense details -->
+                 data-ad-slot="YOUR_UPSCALER_TOP_AD_SLOT_ID"></ins> <!-- REPLACE AdSense details -->
             <script>
                  (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
@@ -135,8 +86,8 @@
                     <img id="previewImage" class="mt-2 max-w-full h-auto rounded-lg hidden shadow-md" alt="Image Preview">
                 </div>
                 <div class="mb-4">
-                    <label for="upscaleLevel" class="block text-base font-bold text-gray-300">Upscale Level</label>
-                    <select id="upscaleLevel" class="custom-select mt-1 text-lg">
+                    <label for="upscaleLevelSelect" class="block text-base font-bold text-gray-300">Upscale Level</label>
+                    <select id="upscaleLevelSelect" class="custom-select mt-1 text-lg">
                         <option value="2">2x (Double Size)</option>
                         <option value="3" selected>3x (Triple Size)</option>
                         <option value="4">4x (Quadruple Size)</option>
@@ -151,8 +102,8 @@
                 </div>
                 <div id="resultSection" class="mt-6 hidden">
                     <h3 class="text-xl font-bold text-white">Upscale Result 🎉</h3>
-                    <p id="originalDimensions" class="text-base text-gray-300 font-bold"></p>
-                    <p id="upscaledDimensions" class="text-base text-gray-300 font-bold"></p>
+                    <p id="originalDimensionsText" class="text-base text-gray-300 font-bold"></p>
+                    <p id="upscaledDimensionsText" class="text-base text-gray-300 font-bold"></p>
                     <div class="mt-4">
                         <img id="upscaledImage" class="max-w-full h-auto rounded-lg shadow" alt="Upscaled Image">
                     </div>
@@ -165,9 +116,9 @@
                     <ins class="adsbygoogle"
                          style="display:block"
                          data-ad-client="ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
-                         data-ad-slot="YOUR_SIDEBAR_AD_SLOT_ID_1"
+                         data-ad-slot="YOUR_UPSCALER_SIDEBAR_AD_SLOT_ID"
                          data-ad-format="auto"
-                         data-full-width-responsive="true"></ins> <!-- Replace AdSense details -->
+                         data-full-width-responsive="true"></ins> <!-- REPLACE AdSense details -->
                     <script>
                          (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
@@ -190,16 +141,17 @@
         const upscaleButton = document.getElementById('upscaleButton');
         const previewImage = document.getElementById('previewImage');
         const errorMessage = document.getElementById('errorMessage');
-        const upscaleLevelSelect = document.getElementById('upscaleLevel');
+        const upscaleLevelSelect = document.getElementById('upscaleLevelSelect');
         const progressContainer = document.getElementById('progressContainer');
         const progressBar = document.getElementById('progressBar');
         const resultSection = document.getElementById('resultSection');
-        const originalDimensions = document.getElementById('originalDimensions');
-        const upscaledDimensions = document.getElementById('upscaledDimensions');
+        const originalDimensionsText = document.getElementById('originalDimensionsText');
+        const upscaledDimensionsText = document.getElementById('upscaledDimensionsText');
         const upscaledImage = document.getElementById('upscaledImage');
         const downloadLink = document.getElementById('downloadLink');
         document.getElementById('currentYear').textContent = new Date().getFullYear();
-        let originalFileName = 'image'; // For naming the downloaded file
+        let originalFileName = 'image';
+        let currentFile = null;
 
         function showError(message) {
             errorMessage.textContent = message;
@@ -208,34 +160,27 @@
         }
 
         function formatBytes(bytes, decimals = 2) {
-            if (!+bytes) return '0 Bytes'
-            const k = 1024
-            const dm = decimals < 0 ? 0 : decimals
-            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
-            const i = Math.floor(Math.log(bytes) / Math.log(k))
-            return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
+            if (!+bytes) return '0 Bytes';
+            const k = 1024;
+            const dm = decimals < 0 ? 0 : decimals;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
         }
 
-
-        dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropZone.classList.add('dragover');
-        });
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
         dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
         dropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropZone.classList.remove('dragover');
-            const files = e.dataTransfer.files;
-            if (files.length > 0) handleImageUpload(files[0]);
+            e.preventDefault(); dropZone.classList.remove('dragover');
+            if (e.dataTransfer.files.length > 0) handleImageUpload(e.dataTransfer.files[0]);
             else showError('Please drop an image file.');
         });
         dropZone.addEventListener('click', () => imageInput.click());
-        imageInput.addEventListener('change', () => {
-            if (imageInput.files.length > 0) handleImageUpload(imageInput.files[0]);
-        });
+        imageInput.addEventListener('change', () => { if (imageInput.files.length > 0) handleImageUpload(imageInput.files[0]); });
 
         function handleImageUpload(file) {
             originalFileName = file.name.substring(0, file.name.lastIndexOf('.')) || 'image';
+            currentFile = file;
             const acceptedMimeTypes = ['image/png', 'image/jpeg', 'image/webp', 'image/bmp', 'image/gif'];
             const acceptedExtensions = ['.png', '.jpg', '.jpeg', '.webp', '.bmp', '.gif'];
             let isValid = false;
@@ -244,44 +189,23 @@
 
             if (fileTypeLower && acceptedMimeTypes.includes(fileTypeLower)) isValid = true;
             else {
-                for (const ext of acceptedExtensions) {
-                    if (fileNameLower.endsWith(ext)) {
-                        isValid = true;
-                        break;
-                    }
-                }
+                for (const ext of acceptedExtensions) if (fileNameLower.endsWith(ext)) { isValid = true; break; }
             }
 
             if (!isValid) {
-                showError('Unsupported file type. Please use PNG, JPG, WebP, BMP, or GIF. Type: ' + (fileTypeLower || 'unknown'));
-                imageInput.value = '';
-                upscaleButton.disabled = true;
-                previewImage.classList.add('hidden');
-                return;
+                showError('Unsupported file. Use PNG, JPG, WebP, BMP, GIF. Type: ' + (fileTypeLower || 'unknown'));
+                imageInput.value = ''; upscaleButton.disabled = true; previewImage.classList.add('hidden'); currentFile = null; return;
             }
 
-            upscaleButton.disabled = false;
-            errorMessage.classList.add('hidden');
+            upscaleButton.disabled = false; errorMessage.classList.add('hidden');
             const reader = new FileReader();
-            reader.onload = (e) => {
-                previewImage.src = e.target.result;
-                previewImage.classList.remove('hidden');
-            };
-            reader.onerror = () => {
-                showError('Error reading the image.');
-                upscaleButton.disabled = true;
-                previewImage.classList.add('hidden');
-            };
+            reader.onload = (e) => { previewImage.src = e.target.result; previewImage.classList.remove('hidden'); };
+            reader.onerror = () => { showError('Error reading image.'); upscaleButton.disabled = true; previewImage.classList.add('hidden'); currentFile = null; };
             reader.readAsDataURL(file);
         }
 
         upscaleButton.addEventListener('click', () => {
-            const file = imageInput.files[0];
-            if (!file) {
-                showError('Please select an image first.');
-                return;
-            }
-
+            if (!currentFile) { showError('Please select an image first.'); return; }
             upscaleButton.disabled = true;
             progressContainer.classList.remove('hidden');
             resultSection.classList.add('hidden');
@@ -296,75 +220,47 @@
                 const scale = parseFloat(upscaleLevelSelect.value);
                 const newWidth = Math.round(img.naturalWidth * scale);
                 const newHeight = Math.round(img.naturalHeight * scale);
-
-                const MAX_DIMENSION = 10000; // Safety limit
+                const MAX_DIMENSION = 10000;
                 if (newWidth > MAX_DIMENSION || newHeight > MAX_DIMENSION) {
-                    showError(`Upscaled dimensions (${newWidth}x${newHeight}px) exceed the limit of ${MAX_DIMENSION}px.`);
-                    upscaleButton.disabled = false;
-                    progressContainer.classList.add('hidden');
-                    progressBar.style.width = '0%';
-                    return;
+                    showError(`Upscaled dimensions (${newWidth}x${newHeight}px) exceed limit of ${MAX_DIMENSION}px.`);
+                    upscaleButton.disabled = false; progressContainer.classList.add('hidden'); progressBar.style.width = '0%'; return;
                 }
-
-                canvas.width = newWidth;
-                canvas.height = newHeight;
-                ctx.imageSmoothingEnabled = true;
-                ctx.imageSmoothingQuality = "high";
+                canvas.width = newWidth; canvas.height = newHeight;
+                ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = "high";
                 ctx.drawImage(img, 0, 0, newWidth, newHeight);
-
                 let progress = 0;
                 const interval = setInterval(() => {
-                    progress += 10;
-                    progressBar.style.width = `${Math.min(progress, 100)}%`;
+                    progress += 10; progressBar.style.width = `${Math.min(progress, 100)}%`;
                     if (progress >= 100) clearInterval(interval);
                 }, 100);
 
                 let upscaledDataUrl;
-                const outputMimeType = (file.type === 'image/jpeg' || file.name.toLowerCase().endsWith('.jpg') || file.name.toLowerCase().endsWith('.jpeg')) ? 'image/jpeg' : 'image/png';
-                const outputQuality = outputMimeType === 'image/jpeg' ? 0.92 : undefined; // Good quality for JPEG, PNG is lossless
-
+                const outputMimeType = (currentFile.type === 'image/jpeg' || originalFileName.toLowerCase().endsWith('.jpg') || originalFileName.toLowerCase().endsWith('.jpeg')) ? 'image/jpeg' : 'image/png';
+                const outputQuality = outputMimeType === 'image/jpeg' ? 0.92 : undefined;
                 try {
                     upscaledDataUrl = canvas.toDataURL(outputMimeType, outputQuality);
                 } catch (ex) {
-                    showError('Error generating upscaled image: ' + ex.message + '. Image may be too large.');
+                    showError(`Upscale error: ${ex.message}. Image might be too large.`);
                     console.error("toDataURL error:", ex);
-                    clearInterval(interval);
-                    progressContainer.classList.add('hidden');
-                    progressBar.style.width = '0%';
-                    upscaleButton.disabled = false;
-                    return;
+                    clearInterval(interval); progressContainer.classList.add('hidden'); progressBar.style.width = '0%'; upscaleButton.disabled = false; return;
                 }
-                
-                clearInterval(interval);
-                progressBar.style.width = '100%';
-
+                clearInterval(interval); progressBar.style.width = '100%';
                 setTimeout(() => {
-                    progressContainer.classList.add('hidden');
-                    progressBar.style.width = '0%';
+                    progressContainer.classList.add('hidden'); progressBar.style.width = '0%';
                     resultSection.classList.remove('hidden');
-                    originalDimensions.textContent = `Original: ${img.naturalWidth}x${img.naturalHeight}px, ${formatBytes(file.size)}`;
-                    upscaledDimensions.textContent = `Upscaled: ${newWidth}x${newHeight}px`;
+                    originalDimensionsText.textContent = `Original: ${img.naturalWidth}x${img.naturalHeight}px, ${formatBytes(currentFile.size)}`;
+                    upscaledDimensionsText.textContent = `Upscaled: ${newWidth}x${newHeight}px`;
                     upscaledImage.src = upscaledDataUrl;
-                    const extension = outputMimeType.split('/')[1];
+                    const extension = outputMimeType.split('/')[1] === 'jpeg' ? 'jpg' : outputMimeType.split('/')[1];
                     downloadLink.href = upscaledDataUrl;
                     downloadLink.download = `${originalFileName}_upscaled_${scale}x.${extension}`;
-                    downloadLink.onclick = () => { /* Data URLs don't need revoking */ };
+                    downloadLink.onclick = () => {};
                     upscaleButton.disabled = false;
                 }, 300);
             };
-            img.onerror = () => {
-                showError('Error loading image for upscaling. It might be corrupted.');
-                upscaleButton.disabled = false;
-                progressContainer.classList.add('hidden');
-                progressBar.style.width = '0%';
-            };
-            reader.onerror = () => {
-                showError('Error reading file for upscaling.');
-                upscaleButton.disabled = false;
-                progressContainer.classList.add('hidden');
-                progressBar.style.width = '0%';
-            };
-            reader.readAsDataURL(file);
+            img.onerror = () => { showError('Error loading image for upscaling.'); upscaleButton.disabled = false; progressContainer.classList.add('hidden'); progressBar.style.width = '0%'; };
+            reader.onerror = () => { showError('Error reading file for upscaling.'); upscaleButton.disabled = false; progressContainer.classList.add('hidden'); progressBar.style.width = '0%'; };
+            reader.readAsDataURL(currentFile);
         });
     </script>
 </body>
