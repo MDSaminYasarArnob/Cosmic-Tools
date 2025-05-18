@@ -8,81 +8,31 @@
     <meta name="author" content="Cosmic Tools">
     <meta name="robots" content="index, follow">
     <title>Cosmic Tools - Image Compressor 📉</title>
-    <!-- Open Graph for Social Media -->
     <meta property="og:title" content="Cosmic Tools - Image Compressor">
     <meta property="og:description" content="Compress images online with adjustable quality settings. Fast, free, and easy to use.">
     <meta property="og:image" content="https://yourdomain.com/og-image.jpg">
     <meta property="og:url" content="https://yourdomain.com/compressor">
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google AdSense Script -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
             crossorigin="anonymous"></script>
     <style>
-        body {
-            background: linear-gradient(to bottom, #1a1a3d, #2c2c54);
-            color: #ffffff;
-            position: relative;
-            font-family: 'Montserrat', sans-serif;
-        }
-        h1, h2, h3, button, label, select { /* Added label and select */
-            font-family: 'Orbitron', sans-serif;
-        }
-        .starry-bg {
-            position: fixed; /* Changed to fixed for better viewport coverage */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-            opacity: 0.3;
-            z-index: -1;
-        }
-        .dragover {
-            border: 2px dashed #4ecdc4;
-            background-color: rgba(78, 205, 196, 0.1);
-        }
-        .progress-bar {
-            height: 8px;
-            background-color: #2c2c54;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        .progress-bar-fill {
-            height: 100%;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            transition: width 0.3s ease-in-out;
-        }
-        .error-message {
-            color: #ff6b6b;
-            font-size: 0.875rem;
-            margin-top: 0.5rem;
-            font-weight: 800;
-        }
-        .gradient-button {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            transition: background 0.3s ease;
-        }
-        .gradient-button:hover {
-            background: linear-gradient(45deg, #4ecdc4, #ff6b6b);
-        }
-        .custom-select { /* Style for select to match theme */
-            background-color: #2c3e50;
-            border: 1px solid #4a5568;
-            color: #ffffff;
-            padding: 0.75rem;
-            border-radius: 0.375rem;
-            width: 100%;
-        }
-        .custom-select:focus {
-            outline: none;
-            border-color: #4ecdc4;
-            box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.5);
-        }
+        body { background: linear-gradient(to bottom, #1a1a3d, #2c2c54); color: #ffffff; position: relative;
+            font-family: 'Montserrat', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+        main { flex-grow: 1; }
+        h1, h2, h3, button, label, select { font-family: 'Orbitron', sans-serif; }
+        .starry-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat; opacity: 0.3; z-index: -1; }
+        .dragover { border: 2px dashed #4ecdc4; background-color: rgba(78, 205, 196, 0.1); }
+        .progress-bar { height: 8px; background-color: #2c2c54; border-radius: 4px; overflow: hidden; }
+        .progress-bar-fill { height: 100%; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); transition: width 0.3s ease-in-out; }
+        .error-message { color: #ff6b6b; font-size: 0.875rem; margin-top: 0.5rem; font-weight: 800; }
+        .gradient-button { background: linear-gradient(45deg, #ff6b6b, #4ecdc4); transition: background 0.3s ease; }
+        .gradient-button:hover { background: linear-gradient(45deg, #4ecdc4, #ff6b6b); }
+        .custom-select { background-color: #2c3e50; border: 1px solid #4a5568; color: #ffffff;
+            padding: 0.75rem; border-radius: 0.375rem; width: 100%; }
+        .custom-select:focus { outline: none; border-color: #4ecdc4; box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.5); }
     </style>
 </head>
 <body class="font-extrabold">
@@ -101,17 +51,10 @@
         </div>
     </header>
     <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <!-- Top Banner Ad -->
         <div class="mb-6">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                 data-ad-slot="YYYYYYYYYY"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+            <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid"
+                 data-ad-client="ca-pub-YOUR_ADSENSE_PUBLISHER_ID" data-ad-slot="YOUR_TOP_BANNER_AD_SLOT_ID"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
         <div class="flex flex-col lg:flex-row gap-6">
             <div class="flex-1 bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg">
@@ -120,7 +63,7 @@
                     <label class="block text-base font-bold text-gray-300 mb-2">Select Image</label>
                     <div id="dropZone" class="border-2 border-dashed border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:bg-gray-700 transition-colors">
                         <p class="text-gray-400 text-lg">Drag and drop your image here or click to select 🖼️</p>
-                        <input type="file" id="imageInput" accept="image/*,.jpg,.jpeg,.png,.webp,.gif,.bmp" class="hidden">
+                        <input type="file" id="imageInput" accept="image/jpeg, image/png, image/webp, image/bmp, image/gif" class="hidden">
                     </div>
                     <p id="errorMessage" class="error-message hidden"></p>
                 </div>
@@ -129,52 +72,44 @@
                     <img id="previewImage" class="mt-2 max-w-full h-auto rounded-lg hidden shadow-md" alt="Image Preview">
                 </div>
                 <div class="mb-4">
-                    <label for="compressionLevel" class="block text-base font-bold text-gray-300">Compression Level (Output as JPEG)</label>
-                    <select id="compressionLevel" class="custom-select mt-1 text-lg">
-                        <option value="0.9">Low (High Quality, ~90%)</option>
-                        <option value="0.7" selected>Medium (Balanced, ~70%)</option>
-                        <option value="0.5">High (Smaller Size, ~50%)</option>
-                        <option value="0.3">Very High (Smallest Size, ~30%)</option>
+                    <label for="compressionLevelSelect" class="block text-base font-bold text-gray-300">Compression Level (Output as JPEG)</label>
+                    <select id="compressionLevelSelect" class="custom-select mt-1 text-lg">
+                        <option value="0.92">Low (High Quality, ~92%)</option>
+                        <option value="0.85">Medium-Low (Good Quality, ~85%)</option>
+                        <option value="0.75" selected>Medium (Balanced, ~75%)</option>
+                        <option value="0.60">Medium-High (Smaller Size, ~60%)</option>
+                        <option value="0.50">High (Smallest Size, ~50%)</option>
                     </select>
                 </div>
-                <button id="compressButton" class="w-full py-3 px-4 text-lg text-white rounded-md gradient-button font-bold disabled:opacity-50" disabled>Compress Image 📉</button>
+                <button id="compressButton" class="w-full py-3 px-4 text-lg text-white rounded-md gradient-button font-bold disabled:opacity-50 disabled:cursor-not-allowed" disabled>Compress Image 📉</button>
                 <div id="progressContainer" class="mt-4 hidden">
                     <p class="text-base text-gray-300 mb-2 font-bold">Compressing...</p>
-                    <div class="progress-bar">
-                        <div id="progressBar" class="progress-bar-fill" style="width: 0%"></div>
-                    </div>
+                    <div class="progress-bar"><div id="progressBar" class="progress-bar-fill" style="width: 0%"></div></div>
                 </div>
                 <div id="resultSection" class="mt-6 hidden">
                     <h3 class="text-xl font-bold text-white">Compression Result 🎉</h3>
-                    <p id="originalSize" class="text-base text-gray-300 font-bold"></p>
-                    <p id="compressedSize" class="text-base text-gray-300 font-bold"></p>
-                    <p id="sizeReduction" class="text-base text-gray-300 font-bold"></p>
-                    <div class="mt-4">
-                        <img id="compressedImage" class="max-w-full h-auto rounded-lg shadow" alt="Compressed Image">
-                    </div>
+                    <p id="originalSizeText" class="text-base text-gray-300 font-bold"></p>
+                    <p id="compressedSizeText" class="text-base text-gray-300 font-bold"></p>
+                    <p id="sizeReductionText" class="text-base text-gray-300 font-bold"></p>
+                    <div class="mt-4"><img id="compressedImage" class="max-w-full h-auto rounded-lg shadow" alt="Compressed Image"></div>
                     <a id="downloadLink" href="#" class="mt-4 inline-block py-3 px-4 text-lg text-white rounded-md gradient-button font-bold">Download Compressed Image ⬇️</a>
                 </div>
             </div>
-            <!-- Sidebar Ad (Desktop Only) -->
-            <div class="hidden lg:block lg:w-1/3">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                     data-ad-slot="ZZZZZZZZZZ"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
+            <aside class="hidden lg:block lg:w-1/3 space-y-6">
+                <div>
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
+                         data-ad-slot="YOUR_SIDEBAR_AD_SLOT_ID_1" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </div>
+            </aside>
         </div>
     </main>
-    <footer class="bg-gray-900 bg-opacity-90 mt-6">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+    <footer class="bg-gray-900 bg-opacity-90 mt-10 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p class="text-gray-300 text-lg font-bold">Copyright © <span id="currentYear"></span> Cosmic Tools. All rights reserved.</p>
-            <nav class="mt-4 flex space-x-4">
-                <a href="/privacy" class="text-gray-300 hover:text-white text-lg font-bold">Privacy Policy 📜</a>
-                <a href="/terms" class="text-gray-300 hover:text-white text-lg font-bold">Terms of Service 📝</a>
+            <nav class="mt-4 flex justify-center space-x-4">
+                <a href="/privacy" class="text-gray-300 hover:text-white text-base font-bold">Privacy Policy 📜</a>
+                <a href="/terms" class="text-gray-300 hover:text-white text-base font-bold">Terms of Service 📝</a>
             </nav>
         </div>
     </footer>
@@ -184,18 +119,19 @@
         const compressButton = document.getElementById('compressButton');
         const previewImage = document.getElementById('previewImage');
         const errorMessage = document.getElementById('errorMessage');
-        const compressionLevel = document.getElementById('compressionLevel');
+        const compressionLevelSelect = document.getElementById('compressionLevelSelect'); // Changed ID for clarity
         const progressContainer = document.getElementById('progressContainer');
         const progressBar = document.getElementById('progressBar');
         const resultSection = document.getElementById('resultSection');
-        const originalSize = document.getElementById('originalSize');
-        const compressedSize = document.getElementById('compressedSize');
-        const sizeReduction = document.getElementById('sizeReduction');
+        const originalSizeText = document.getElementById('originalSizeText'); // Changed ID
+        const compressedSizeText = document.getElementById('compressedSizeText'); // Changed ID
+        const sizeReductionText = document.getElementById('sizeReductionText'); // Changed ID
         const compressedImage = document.getElementById('compressedImage');
         const downloadLink = document.getElementById('downloadLink');
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        let originalFileName = 'image'; // To keep original file name for download
+        let originalFileName = 'image';
+        let currentFile = null; // To store the File object
 
         function showError(message) {
             errorMessage.textContent = message;
@@ -203,218 +139,120 @@
             setTimeout(() => errorMessage.classList.add('hidden'), 5000);
         }
 
-        dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropZone.classList.add('dragover');
-        });
+        function formatBytes(bytes, decimals = 2) {
+            if (!+bytes) return '0 Bytes'
+            const k = 1024
+            const dm = decimals < 0 ? 0 : decimals
+            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+            const i = Math.floor(Math.log(bytes) / Math.log(k))
+            return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
+        }
 
-        dropZone.addEventListener('dragleave', () => {
-            dropZone.classList.remove('dragover');
-        });
-
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
         dropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropZone.classList.remove('dragover');
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                handleImageUpload(files[0]);
-            } else {
-                 showError('Please drop an image file.');
-            }
+            e.preventDefault(); dropZone.classList.remove('dragover');
+            if (e.dataTransfer.files.length > 0) handleImageUpload(e.dataTransfer.files[0]);
+            else showError('Please drop an image file.');
         });
-
-        dropZone.addEventListener('click', () => {
-            imageInput.click();
-        });
-
-        imageInput.addEventListener('change', () => {
-            if (imageInput.files.length > 0) {
-                handleImageUpload(imageInput.files[0]);
-            }
-        });
+        dropZone.addEventListener('click', () => imageInput.click());
+        imageInput.addEventListener('change', () => { if (imageInput.files.length > 0) handleImageUpload(imageInput.files[0]); });
 
         function handleImageUpload(file) {
-            console.log("File selected:", file.name, "Type:", file.type, "Size:", file.size);
             originalFileName = file.name.substring(0, file.name.lastIndexOf('.')) || 'image';
-
-            const acceptedMimeTypes = ['image/png', 'image/jpeg', 'image/webp', 'image/gif', 'image/bmp'];
-            const acceptedExtensions = ['.png', '.jpg', '.jpeg', '.webp', '.gif', '.bmp'];
-
+            currentFile = file; // Store the file object
+            const acceptedMimeTypes = ['image/png', 'image/jpeg', 'image/webp', 'image/bmp', 'image/gif'];
+            const acceptedExtensions = ['.png', '.jpg', '.jpeg', '.webp', '.bmp', '.gif'];
             let isAccepted = false;
             const fileTypeLower = file.type ? file.type.toLowerCase() : "";
             const fileNameLower = file.name.toLowerCase();
 
-            if (fileTypeLower && acceptedMimeTypes.includes(fileTypeLower)) {
-                isAccepted = true;
-            } else {
-                for (const ext of acceptedExtensions) {
-                    if (fileNameLower.endsWith(ext)) {
-                        isAccepted = true;
-                        break;
-                    }
-                }
+            if (fileTypeLower && acceptedMimeTypes.includes(fileTypeLower)) isAccepted = true;
+            else {
+                for (const ext of acceptedExtensions) if (fileNameLower.endsWith(ext)) { isAccepted = true; break; }
             }
 
             if (!isAccepted) {
-                showError('Unsupported file type. Please select a valid image (PNG, JPG, WebP, GIF, BMP). Type: ' + (fileTypeLower || 'unknown'));
-                imageInput.value = ''; // Reset file input
-                compressButton.disabled = true;
-                previewImage.classList.add('hidden');
-                return;
+                showError('Unsupported file. Use PNG, JPG, WebP, BMP, GIF. Type: ' + (fileTypeLower || 'unknown'));
+                imageInput.value = ''; compressButton.disabled = true; previewImage.classList.add('hidden'); currentFile = null; return;
             }
 
-            compressButton.disabled = false;
-            errorMessage.classList.add('hidden'); // Hide error message on successful upload
+            compressButton.disabled = false; errorMessage.classList.add('hidden');
             const reader = new FileReader();
-            reader.onload = (e) => {
-                previewImage.src = e.target.result;
-                previewImage.classList.remove('hidden');
-            };
-            reader.onerror = () => {
-                showError('Error reading the image. The file might be corrupted.');
-                compressButton.disabled = true;
-                previewImage.classList.add('hidden');
-            };
+            reader.onload = (e) => { previewImage.src = e.target.result; previewImage.classList.remove('hidden'); };
+            reader.onerror = () => { showError('Error reading image.'); compressButton.disabled = true; previewImage.classList.add('hidden'); currentFile = null; };
             reader.readAsDataURL(file);
         }
 
-        function formatBytes(bytes, decimals = 2) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const dm = decimals < 0 ? 0 : decimals;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-        }
-
-
         compressButton.addEventListener('click', () => {
-            const file = imageInput.files[0];
-            if (!file) {
-                showError('Please select an image.');
-                return;
-            }
-
+            if (!currentFile) { showError('Please select an image.'); return; } // Use currentFile
             compressButton.disabled = true;
             progressContainer.classList.remove('hidden');
             resultSection.classList.add('hidden');
             progressBar.style.width = '0%';
 
-
             const img = new Image();
             const reader = new FileReader();
-
-            reader.onload = (e) => {
-                img.src = e.target.result;
-            };
-
+            reader.onload = (e) => img.src = e.target.result;
             img.onload = () => {
                 const canvas = document.createElement('canvas');
                 const ctx = canvas.getContext('2d');
-                canvas.width = img.naturalWidth; // Use naturalWidth/Height for correct dimensions
-                canvas.height = img.naturalHeight;
-                
-                // If original image is PNG and we want to preserve transparency for WebP output (if WebP chosen)
-                // For JPEG, background will be white by default if original is transparent.
-                // Since this tool always outputs JPEG, if the source is transparent PNG, it will have a white background.
-                // If we wanted to offer WebP output and preserve transparency:
-                // if (file.type === 'image/png' && outputFormat === 'image/webp') {
-                //    // No fill, draw transparent image
-                // } else if (outputFormat === 'image/jpeg' || outputFormat === 'image/bmp') {
-                //    ctx.fillStyle = '#FFFFFF';
-                //    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                // }
-                // Forcing JPEG output:
-                if (file.type === 'image/png' || file.type === 'image/gif' || file.type === 'image/webp') { // Check if source might have transparency
-                     ctx.fillStyle = '#FFFFFF'; // Fill with white for JPEG output
-                     ctx.fillRect(0, 0, canvas.width, canvas.height);
+                canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
+
+                // Fill background white if original is transparent, as output is JPEG
+                if (currentFile.type === 'image/png' || currentFile.type === 'image/gif' || currentFile.type === 'image/webp') {
+                    ctx.fillStyle = '#FFFFFF';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
                 }
                 ctx.drawImage(img, 0, 0);
 
-
                 let progress = 0;
                 const interval = setInterval(() => {
-                    progress += 10;
-                    progressBar.style.width = `${Math.min(progress, 100)}%`;
+                    progress += 10; progressBar.style.width = `${Math.min(progress, 100)}%`;
                     if (progress >= 100) clearInterval(interval);
-                }, 100); // Quicker progress simulation
+                }, 100);
 
-                const quality = parseFloat(compressionLevel.value);
+                const quality = parseFloat(compressionLevelSelect.value);
                 let compressedDataUrl;
                 try {
-                    compressedDataUrl = canvas.toDataURL('image/jpeg', quality); // Always output as JPEG
-                } catch(err) {
-                    showError('Error during compression. The image might be too large or an issue with processing.');
+                    compressedDataUrl = canvas.toDataURL('image/jpeg', quality); // Always output JPEG
+                } catch (err) {
+                    showError(`Compression error: ${err.message}. Image might be too large.`);
                     console.error("Canvas toDataURL error:", err);
-                    clearInterval(interval);
-                    progressContainer.classList.add('hidden');
-                    compressButton.disabled = false;
-                    progressBar.style.width = '0%';
-                    return;
+                    clearInterval(interval); progressContainer.classList.add('hidden'); compressButton.disabled = false; progressBar.style.width = '0%'; return;
                 }
-
 
                 if (!compressedDataUrl || compressedDataUrl === 'data:,') {
-                    showError('Error generating compressed image. Output might be empty.');
-                    clearInterval(interval);
-                    progressContainer.classList.add('hidden');
-                    compressButton.disabled = false;
-                    progressBar.style.width = '0%';
-                    return;
+                    showError('Error generating compressed image data.');
+                    clearInterval(interval); progressContainer.classList.add('hidden'); compressButton.disabled = false; progressBar.style.width = '0%'; return;
                 }
 
-                const originalSizeBytes = file.size;
-                // Estimate size of base64 data URL string
+                const originalSizeBytes = currentFile.size;
                 const head = 'data:image/jpeg;base64,';
                 const imageAsBase64 = compressedDataUrl.substring(head.length);
-                const compressedSizeBytes = Math.round(imageAsBase64.length * 0.75); // More accurate for base64
+                const compressedSizeBytes = Math.round(imageAsBase64.length * 0.75); // Base64 to bytes approx.
 
-                setTimeout(() => { // Delay for progress bar to show 100%
-                    clearInterval(interval);
-                    progressBar.style.width = '100%';
-
-                    setTimeout(() => { // Delay to show results
-                        progressContainer.classList.add('hidden');
-                        resultSection.classList.remove('hidden');
-
-                        originalSize.textContent = `Original Size: ${formatBytes(originalSizeBytes)}`;
-                        compressedSize.textContent = `Compressed Size: ${formatBytes(compressedSizeBytes)}`;
-                        let reductionPercentage = 0;
-                        if (originalSizeBytes > 0) {
-                           reductionPercentage = (((originalSizeBytes - compressedSizeBytes) / originalSizeBytes) * 100);
-                        }
-                        sizeReduction.textContent = `Size Reduction: ${reductionPercentage.toFixed(2)}%`;
-
-                        compressedImage.src = compressedDataUrl;
-                        downloadLink.href = compressedDataUrl;
-                        downloadLink.download = `${originalFileName}_compressed.jpg`; // Always .jpg
-
-                        downloadLink.addEventListener('click', (ev) => {
-                            if (!downloadLink.href || downloadLink.href === '#') {
-                                ev.preventDefault();
-                                showError('Download failed. Try again.');
-                            }
-                        }, { once: true });
-
-                        compressButton.disabled = false;
-                    }, 300);
-                }, 200);
+                clearInterval(interval); progressBar.style.width = '100%';
+                setTimeout(() => {
+                    progressContainer.classList.add('hidden'); progressBar.style.width = '0%';
+                    resultSection.classList.remove('hidden');
+                    originalSizeText.textContent = `Original Size: ${formatBytes(originalSizeBytes)}`;
+                    compressedSizeText.textContent = `Compressed Size: ${formatBytes(compressedSizeBytes)}`;
+                    let reductionPercentage = 0;
+                    if (originalSizeBytes > 0 && compressedSizeBytes < originalSizeBytes) {
+                       reductionPercentage = (((originalSizeBytes - compressedSizeBytes) / originalSizeBytes) * 100);
+                    }
+                    sizeReductionText.textContent = `Size Reduction: ${reductionPercentage.toFixed(2)}%`;
+                    compressedImage.src = compressedDataUrl;
+                    downloadLink.href = compressedDataUrl;
+                    downloadLink.download = `${originalFileName}_compressed.jpg`; // Output is always .jpg
+                    downloadLink.onclick = () => {};
+                    compressButton.disabled = false;
+                }, 300);
             };
-
-            img.onerror = () => {
-                showError('Error loading the image for compression. It might be corrupted or an unsupported type.');
-                compressButton.disabled = false;
-                progressContainer.classList.add('hidden');
-                progressBar.style.width = '0%';
-            };
-            reader.onerror = () => {
-                showError('Error reading the file for compression.');
-                compressButton.disabled = false;
-                progressContainer.classList.add('hidden');
-                progressBar.style.width = '0%';
-            };
-
-            reader.readAsDataURL(file);
+            img.onerror = () => { showError('Error loading image for compression.'); compressButton.disabled = false; progressContainer.classList.add('hidden'); progressBar.style.width = '0%'; };
+            reader.onerror = () => { showError('Error reading file for compression.'); compressButton.disabled = false; progressContainer.classList.add('hidden'); progressBar.style.width = '0%'; };
+            reader.readAsDataURL(currentFile);
         });
     </script>
 </body>
