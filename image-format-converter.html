@@ -8,107 +8,36 @@
     <meta name="author" content="Cosmic Tools">
     <meta name="robots" content="index, follow">
     <title>Cosmic Tools - Image Format Converter 🔄</title>
-    <!-- Open Graph for Social Media -->
     <meta property="og:title" content="Cosmic Tools - Image Format Converter">
     <meta property="og:description" content="Convert images to various formats including PNG, JPEG, WebP, BMP, TIFF, GIF, HEIC, and AVIF. Fast, free, and easy to use.">
     <meta property="og:image" content="https://yourdomain.com/og-image.jpg">
     <meta property="og:url" content="https://yourdomain.com/converter">
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google AdSense Script -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
             crossorigin="anonymous"></script>
     <style>
-        body {
-            background: linear-gradient(to bottom, #1a1a3d, #2c2c54);
-            color: #ffffff;
-            position: relative;
-            font-family: 'Montserrat', sans-serif;
-        }
-        h1, h2, h3, button {
-            font-family: 'Orbitron', sans-serif;
-        }
-        .starry-bg {
-            position: fixed; /* Changed to fixed to ensure it covers the viewport even on scroll */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-            opacity: 0.3;
-            z-index: -1;
-        }
-        .dragover {
-            border: 2px dashed #4ecdc4;
-            background-color: rgba(78, 205, 196, 0.1);
-        }
-        .progress-bar {
-            height: 8px;
-            background-color: #2c2c54;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        .progress-bar-fill {
-            height: 100%;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            transition: width 0.3s ease-in-out;
-        }
-        .error-message {
-            color: #ff6b6b;
-            font-size: 0.875rem;
-            margin-top: 0.5rem;
-            font-weight: 800;
-        }
-        .gradient-button {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            transition: background 0.3s ease;
-        }
-        .gradient-button:hover {
-            background: linear-gradient(45deg, #4ecdc4, #ff6b6b);
-        }
-         /* Custom styles for controls to match the theme */
-        .custom-select, .custom-range {
-            background-color: #2c3e50;
-            border: 1px solid #4a5568;
-            color: #ffffff;
-            padding: 0.75rem;
-            border-radius: 0.375rem;
-            width: 100%;
-            font-family: 'Orbitron', sans-serif; /* Ensuring Orbitron for select */
-        }
-        .custom-select:focus, .custom-range:focus {
-            outline: none;
-            border-color: #4ecdc4;
-            box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.5);
-        }
-        .custom-range::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            background: #4ecdc4;
-            cursor: pointer;
-            border-radius: 50%;
-        }
-        .custom-range::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
-            background: #4ecdc4;
-            cursor: pointer;
-            border-radius: 50%;
-            border: none;
-        }
-        .custom-label {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: bold;
-            color: #cbd5e0;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
+        body { background: linear-gradient(to bottom, #1a1a3d, #2c2c54); color: #ffffff; position: relative;
+            font-family: 'Montserrat', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+        main { flex-grow: 1; }
+        h1, h2, h3, button, label { font-family: 'Orbitron', sans-serif; }
+        .starry-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat; opacity: 0.3; z-index: -1; }
+        .dragover { border: 2px dashed #4ecdc4; background-color: rgba(78, 205, 196, 0.1); }
+        .progress-bar { height: 8px; background-color: #2c2c54; border-radius: 4px; overflow: hidden; }
+        .progress-bar-fill { height: 100%; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); transition: width 0.3s ease-in-out; }
+        .error-message { color: #ff6b6b; font-size: 0.875rem; margin-top: 0.5rem; font-weight: 800; }
+        .gradient-button { background: linear-gradient(45deg, #ff6b6b, #4ecdc4); transition: background 0.3s ease; }
+        .gradient-button:hover { background: linear-gradient(45deg, #4ecdc4, #ff6b6b); }
+        .custom-select, .custom-range { background-color: #2c3e50; border: 1px solid #4a5568; color: #ffffff;
+            padding: 0.75rem; border-radius: 0.375rem; width: 100%; font-family: 'Orbitron', sans-serif; }
+        .custom-select:focus, .custom-range:focus { outline: none; border-color: #4ecdc4; box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.5); }
+        .custom-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px;
+            background: #4ecdc4; cursor: pointer; border-radius: 50%; }
+        .custom-range::-moz-range-thumb { width: 20px; height: 20px; background: #4ecdc4; cursor: pointer; border-radius: 50%; border: none; }
+        .custom-label { font-weight: bold; color: #cbd5e0; margin-bottom: 0.5rem; display: block; }
+        .accent-pink-500 { accent-color: #ec4899; }
     </style>
 </head>
 <body class="font-extrabold">
@@ -127,24 +56,17 @@
         </div>
     </header>
     <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <!-- Top Banner Ad -->
         <div class="mb-6">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                 data-ad-slot="YYYYYYYYYY"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+            <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid"
+                 data-ad-client="ca-pub-YOUR_ADSENSE_PUBLISHER_ID" data-ad-slot="YOUR_TOP_BANNER_AD_SLOT_ID"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
         <div class="flex flex-col lg:flex-row gap-6">
             <div class="flex-1 bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg">
                 <h2 class="text-2xl font-bold text-white mb-4">Convert Your Image 🖼️</h2>
                 <div class="mb-4">
                     <label class="custom-label mb-2">Select Image</label>
-                    <div id="dropZone" class="border-2 border-dashed border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:bg-gray-700">
+                    <div id="dropZone" class="border-2 border-dashed border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:bg-gray-700 transition-colors">
                         <p class="text-gray-400 text-lg">Drag and drop your image here or click to select 🖼️</p>
                         <input type="file" id="imageInput" accept="image/*,.heic,.heif,.avif" class="hidden">
                     </div>
@@ -161,55 +83,45 @@
                         <option value="image/jpeg" selected>JPEG</option>
                         <option value="image/webp">WebP</option>
                         <option value="image/bmp">BMP</option>
-                        <option value="image/tiff">TIFF</option>
+                        <option value="image/tiff">TIFF (Converts to PNG)</option>
                         <option value="image/gif">GIF</option>
                         <option value="image/heic">HEIC (Converts to PNG)</option>
                         <option value="image/avif">AVIF (Converts to PNG)</option>
                     </select>
-                    <p class="text-sm text-gray-400 mt-1 font-bold">Note: HEIC and AVIF will convert to PNG due to browser support.</p>
+                    <p class="text-sm text-gray-400 mt-1 font-bold font-sans">Note: HEIC, AVIF, and TIFF may convert to PNG due to browser support.</p>
                 </div>
                 <div class="mb-4">
                     <label for="quality" class="custom-label">Quality (JPEG/WebP): <span id="qualityValue" class="text-pink-400">0.80</span></label>
-                    <input type="range" id="quality" min="0.1" max="1" step="0.01" value="0.8" class="custom-range w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-pink-500">
-                    <p class="text-sm text-gray-400 mt-1 font-bold">Adjust quality for JPEG and WebP (0.1 to 1)</p>
+                    <input type="range" id="quality" min="0.1" max="1" step="0.01" value="0.80" class="custom-range w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-pink-500">
                 </div>
-                <button id="convertButton" class="w-full py-3 px-4 text-lg text-white rounded-md gradient-button font-bold disabled:opacity-50" disabled>Convert Image 🔄</button>
+                <button id="convertButton" class="w-full py-3 px-4 text-lg text-white rounded-md gradient-button font-bold disabled:opacity-50 disabled:cursor-not-allowed" disabled>Convert Image 🔄</button>
                 <div id="progressContainer" class="mt-4 hidden">
                     <p class="text-base text-gray-300 mb-2 font-bold">Converting...</p>
-                    <div class="progress-bar">
-                        <div id="progressBar" class="progress-bar-fill" style="width: 0%"></div>
-                    </div>
+                    <div class="progress-bar"><div id="progressBar" class="progress-bar-fill" style="width: 0%"></div></div>
                 </div>
                 <div id="resultSection" class="mt-6 hidden">
                     <h3 class="text-xl font-bold text-white">Conversion Result 🎉</h3>
-                    <p id="originalFormat" class="text-base text-gray-300 font-bold"></p>
-                    <p id="convertedFormat" class="text-base text-gray-300 font-bold"></p>
-                    <div class="mt-4">
-                        <img id="convertedImage" class="max-w-full h-auto rounded-lg shadow-md" alt="Converted Image">
-                    </div>
+                    <p id="originalFormatText" class="text-base text-gray-300 font-bold"></p>
+                    <p id="convertedFormatText" class="text-base text-gray-300 font-bold"></p>
+                    <div class="mt-4"><img id="convertedImage" class="max-w-full h-auto rounded-lg shadow-md" alt="Converted Image"></div>
                     <a id="downloadLink" href="#" class="mt-4 inline-block py-3 px-4 text-lg text-white rounded-md gradient-button font-bold">Download Converted Image ⬇️</a>
                 </div>
             </div>
-            <!-- Sidebar Ad (Desktop Only) -->
-            <div class="hidden lg:block lg:w-1/3">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                     data-ad-slot="ZZZZZZZZZZ"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
+            <aside class="hidden lg:block lg:w-1/3 space-y-6">
+                <div>
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
+                         data-ad-slot="YOUR_SIDEBAR_AD_SLOT_ID_1" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </div>
+            </aside>
         </div>
     </main>
-    <footer class="bg-gray-900 bg-opacity-90 mt-6">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+    <footer class="bg-gray-900 bg-opacity-90 mt-10 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p class="text-gray-300 text-lg font-bold">Copyright © <span id="currentYear"></span> Cosmic Tools. All rights reserved.</p>
-            <nav class="mt-4 flex space-x-4">
-                <a href="/privacy" class="text-gray-300 hover:text-white text-lg font-bold">Privacy Policy 📜</a>
-                <a href="/terms" class="text-gray-300 hover:text-white text-lg font-bold">Terms of Service 📝</a>
+            <nav class="mt-4 flex justify-center space-x-4">
+                <a href="/privacy" class="text-gray-300 hover:text-white text-base font-bold">Privacy Policy 📜</a>
+                <a href="/terms" class="text-gray-300 hover:text-white text-base font-bold">Terms of Service 📝</a>
             </nav>
         </div>
     </footer>
@@ -225,8 +137,8 @@
         const progressContainer = document.getElementById('progressContainer');
         const progressBar = document.getElementById('progressBar');
         const resultSection = document.getElementById('resultSection');
-        const originalFormat = document.getElementById('originalFormat');
-        const convertedFormat = document.getElementById('convertedFormat');
+        const originalFormatText = document.getElementById('originalFormatText');
+        const convertedFormatText = document.getElementById('convertedFormatText');
         const convertedImage = document.getElementById('convertedImage');
         const downloadLink = document.getElementById('downloadLink');
         document.getElementById('currentYear').textContent = new Date().getFullYear();
@@ -240,130 +152,58 @@
             setTimeout(() => errorMessage.classList.add('hidden'), 5000);
         }
 
-        dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropZone.classList.add('dragover');
-        });
-
-        dropZone.addEventListener('dragleave', () => {
-            dropZone.classList.remove('dragover');
-        });
-
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
         dropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropZone.classList.remove('dragover');
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                 handleImageUpload(files[0]);
-            } else {
-                showError('Please drop an image file.');
-            }
+            e.preventDefault(); dropZone.classList.remove('dragover');
+            if (e.dataTransfer.files.length > 0) handleImageUpload(e.dataTransfer.files[0]);
+            else showError('Please drop an image file.');
         });
-
-        dropZone.addEventListener('click', () => {
-            imageInput.click();
-        });
-
-        imageInput.addEventListener('change', () => {
-            if (imageInput.files.length > 0) {
-                handleImageUpload(imageInput.files[0]);
-            }
-        });
+        dropZone.addEventListener('click', () => imageInput.click());
+        imageInput.addEventListener('change', () => { if (imageInput.files.length > 0) handleImageUpload(imageInput.files[0]); });
 
         function handleImageUpload(file) {
-            console.log("File selected:", file.name, "Type:", file.type, "Size:", file.size);
-
             const acceptedMimeTypes = ['image/png', 'image/jpeg', 'image/webp', 'image/gif', 'image/bmp', 'image/tiff', 'image/heic', 'image/heif', 'image/avif'];
             const acceptedExtensions = ['.png', '.jpg', '.jpeg', '.webp', '.gif', '.bmp', '.tif', '.tiff', '.heic', '.heif', '.avif'];
-
             let isAccepted = false;
-            const fileTypeLower = file.type ? file.type.toLowerCase() : ""; // Handle cases where file.type might be undefined/null
+            const fileTypeLower = file.type ? file.type.toLowerCase() : "";
             const fileNameLower = file.name.toLowerCase();
 
-            if (fileTypeLower && acceptedMimeTypes.includes(fileTypeLower)) {
-                isAccepted = true;
-                console.log("Accepted by MIME type:", fileTypeLower);
-            } else {
-                // Fallback to extension check if MIME type is empty or not in the recognized list
-                console.log("MIME type not in accepted list or empty, checking extension for:", fileNameLower);
-                for (const ext of acceptedExtensions) {
-                    if (fileNameLower.endsWith(ext)) {
-                        isAccepted = true;
-                        console.log("Accepted by extension:", ext);
-                        break;
-                    }
-                }
+            if (fileTypeLower && acceptedMimeTypes.includes(fileTypeLower)) isAccepted = true;
+            else {
+                for (const ext of acceptedExtensions) if (fileNameLower.endsWith(ext)) { isAccepted = true; break; }
             }
 
             if (!isAccepted) {
-                showError('Unsupported file type. Please select a valid image (PNG, JPG, WebP, GIF, BMP, TIFF, HEIC, AVIF). Type received: ' + (fileTypeLower || 'unknown'));
-                imageInput.value = ''; // Reset file input
-                convertButton.disabled = true;
-                previewImage.classList.add('hidden');
-                currentFile = null;
-                return;
+                showError('Unsupported file. Use common image types. Type: ' + (fileTypeLower || 'unknown'));
+                imageInput.value = ''; convertButton.disabled = true; previewImage.classList.add('hidden'); currentFile = null; return;
             }
 
             currentFile = file;
             originalFileName = file.name.substring(0, file.name.lastIndexOf('.')) || 'image';
-            convertButton.disabled = false;
-            errorMessage.classList.add('hidden'); // Hide any previous error message.
-
+            convertButton.disabled = false; errorMessage.classList.add('hidden');
             const reader = new FileReader();
-            reader.onload = (e) => {
-                console.log("FileReader loaded successfully.");
-                previewImage.src = e.target.result;
-                previewImage.classList.remove('hidden');
-            };
-            reader.onerror = (errorEvent) => { // Changed to errorEvent to avoid conflict
-                console.error("FileReader error:", errorEvent);
-                showError('Error reading the image. The file might be corrupted.');
-                convertButton.disabled = true;
-                currentFile = null;
-                previewImage.classList.add('hidden');
-            };
-            
-            try {
-                console.log("Attempting to read file as Data URL...");
-                reader.readAsDataURL(file);
-            } catch (e) {
-                console.error("Error calling readAsDataURL:", e);
-                showError('Critical error trying to read the file.');
-                convertButton.disabled = true;
-                currentFile = null;
-                previewImage.classList.add('hidden');
-                return; 
-            }
-            
+            reader.onload = (e) => { previewImage.src = e.target.result; previewImage.classList.remove('hidden'); };
+            reader.onerror = () => { showError('Error reading image.'); convertButton.disabled = true; currentFile = null; previewImage.classList.add('hidden'); };
+            reader.readAsDataURL(file);
             toggleQualitySlider();
         }
 
-
-        qualitySlider.addEventListener('input', () => {
-            qualityValueDisplay.textContent = parseFloat(qualitySlider.value).toFixed(2);
-        });
-         outputFormatSelect.addEventListener('change', toggleQualitySlider);
+        qualitySlider.addEventListener('input', () => { qualityValueDisplay.textContent = parseFloat(qualitySlider.value).toFixed(2); });
+        outputFormatSelect.addEventListener('change', toggleQualitySlider);
 
         function toggleQualitySlider() {
             const selectedFormat = outputFormatSelect.value;
             const qualityRelatedFormats = ['image/jpeg', 'image/webp'];
             const isQualityRelevant = qualityRelatedFormats.includes(selectedFormat);
-
             qualitySlider.disabled = !isQualityRelevant;
-            const parentDiv = qualitySlider.closest('div.mb-4'); // Find the parent div to style opacity
-            if(parentDiv) {
-                parentDiv.style.opacity = isQualityRelevant ? 1 : 0.5;
-            }
+            const qualitySection = qualitySlider.closest('div.mb-4');
+            if (qualitySection) qualitySection.style.opacity = isQualityRelevant ? 1 : 0.5;
             qualityValueDisplay.textContent = isQualityRelevant ? parseFloat(qualitySlider.value).toFixed(2) : 'N/A';
         }
 
-
         convertButton.addEventListener('click', () => {
-            if (!currentFile) {
-                showError('Please select an image.');
-                return;
-            }
-
+            if (!currentFile) { showError('Please select an image.'); return; }
             convertButton.disabled = true;
             progressContainer.classList.remove('hidden');
             resultSection.classList.add('hidden');
@@ -371,29 +211,19 @@
 
             const img = new Image();
             const reader = new FileReader();
-
-            reader.onload = (e) => {
-                img.src = e.target.result;
-            };
-
+            reader.onload = (e) => img.src = e.target.result;
             img.onload = () => {
                 const canvas = document.createElement('canvas');
                 const ctx = canvas.getContext('2d');
-                canvas.width = img.naturalWidth;
-                canvas.height = img.naturalHeight;
-
+                canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
                 const targetFormat = outputFormatSelect.value;
                 if (targetFormat === 'image/jpeg' || targetFormat === 'image/bmp') {
-                    ctx.fillStyle = '#FFFFFF';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0, 0, canvas.width, canvas.height);
                 }
                 ctx.drawImage(img, 0, 0);
-
-
                 let progress = 0;
                 const interval = setInterval(() => {
-                    progress += 10;
-                    progressBar.style.width = `${Math.min(progress, 100)}%`;
+                    progress += 10; progressBar.style.width = `${Math.min(progress, 100)}%`;
                     if (progress >= 100) clearInterval(interval);
                 }, 100);
 
@@ -403,83 +233,44 @@
                 let finalExtension = targetFormat.split('/')[1];
 
                 try {
-                    if (targetFormat === 'image/heic' || targetFormat === 'image/avif') {
-                        finalFormatMime = 'image/png';
-                        finalExtension = 'png';
+                    if (targetFormat === 'image/heic' || targetFormat === 'image/avif' || targetFormat === 'image/tiff') {
+                        finalFormatMime = 'image/png'; finalExtension = 'png';
                         convertedDataUrl = canvas.toDataURL(finalFormatMime, 1);
-                        showError('HEIC/AVIF converted to PNG due to browser limitations. For native HEIC/AVIF, server-side tools are often needed.');
-                    } else if (targetFormat === 'image/tiff') {
-                         // TIFF is not directly supported by canvas.toDataURL for output.
-                         // Browsers will typically output as PNG or throw an error.
-                        finalFormatMime = 'image/png';
-                        finalExtension = 'png';
-                        convertedDataUrl = canvas.toDataURL(finalFormatMime); // Attempt to get PNG
-                        showError('TIFF conversion will output as PNG due to browser limitations.');
-                    } else if (targetFormat === 'image/png' || targetFormat === 'image/bmp' || targetFormat === 'image/gif' ) {
+                        let reason = "browser limitations";
+                        if (targetFormat === 'image/heic') reason = "HEIC converted to PNG due to " + reason;
+                        else if (targetFormat === 'image/avif') reason = "AVIF converted to PNG due to " + reason;
+                        else if (targetFormat === 'image/tiff') reason = "TIFF converted to PNG due to " + reason;
+                        showError(reason + ". For native support, server-side tools are often needed.");
+                    } else if (targetFormat === 'image/png' || targetFormat === 'image/bmp' || targetFormat === 'image/gif') {
                         convertedDataUrl = canvas.toDataURL(targetFormat);
-                    } else { // For JPEG, WebP
+                    } else {
                         convertedDataUrl = canvas.toDataURL(targetFormat, qualityValue);
                     }
                 } catch (ex) {
-                    showError(`Error during conversion to ${targetFormat.split('/')[1].toUpperCase()}. The format might not be fully supported for export by your browser. Try PNG or JPEG.`);
-                    console.error('Conversion toDataURL error:', ex);
-                    clearInterval(interval);
-                    progressContainer.classList.add('hidden');
-                    convertButton.disabled = false;
-                    progressBar.style.width = '0%';
-                    return;
+                    showError(`Conversion error for ${targetFormat.split('/')[1].toUpperCase()}: ${ex.message}. Format might not be supported.`);
+                    console.error('Conversion error:', ex);
+                    clearInterval(interval); progressContainer.classList.add('hidden'); convertButton.disabled = false; progressBar.style.width = '0%'; return;
                 }
-
 
                 if (!convertedDataUrl || convertedDataUrl === 'data:,') {
-                    showError('Error generating converted image. Output might be too large or format unsupported.');
-                    clearInterval(interval);
-                    progressContainer.classList.add('hidden');
-                    convertButton.disabled = false;
-                    progressBar.style.width = '0%';
-                    return;
+                    showError('Error generating converted image.');
+                    clearInterval(interval); progressContainer.classList.add('hidden'); convertButton.disabled = false; progressBar.style.width = '0%'; return;
                 }
-
+                clearInterval(interval); progressBar.style.width = '100%';
                 setTimeout(() => {
-                    clearInterval(interval);
-                    progressBar.style.width = '100%';
-
-                    setTimeout(() => {
-                        progressContainer.classList.add('hidden');
-                        resultSection.classList.remove('hidden');
-
-                        originalFormat.textContent = `Original Format: ${currentFile.type.split('/')[1].toUpperCase() || 'Unknown'}`;
-                        convertedFormat.textContent = `Converted Format: ${finalExtension.toUpperCase()}`;
-
-                        convertedImage.src = convertedDataUrl;
-                        downloadLink.href = convertedDataUrl;
-                        downloadLink.download = `${originalFileName}_converted.${finalExtension}`;
-
-                        downloadLink.addEventListener('click', (ev) => {
-                            if (!downloadLink.href || downloadLink.href === '#') {
-                                ev.preventDefault();
-                                showError('Download failed. Try again.');
-                            }
-                        }, { once: true });
-
-                        convertButton.disabled = false;
-                     }, 300);
-                }, 200);
+                    progressContainer.classList.add('hidden'); progressBar.style.width = '0%';
+                    resultSection.classList.remove('hidden');
+                    originalFormatText.textContent = `Original: ${currentFile.type ? currentFile.type.split('/')[1].toUpperCase() : 'Unknown'}`;
+                    convertedFormatText.textContent = `Converted To: ${finalExtension.toUpperCase()}`;
+                    convertedImage.src = convertedDataUrl;
+                    downloadLink.href = convertedDataUrl;
+                    downloadLink.download = `${originalFileName}_converted.${finalExtension}`;
+                    downloadLink.onclick = () => {}; // Data URLs don't need revoking
+                    convertButton.disabled = false;
+                 }, 300);
             };
-
-            img.onerror = () => {
-                showError('Error loading the image for conversion. It might be corrupted or an unsupported type.');
-                convertButton.disabled = false;
-                progressContainer.classList.add('hidden');
-                progressBar.style.width = '0%';
-            };
-            reader.onerror = () => {
-                 showError('Error reading the file for conversion.');
-                convertButton.disabled = false;
-                progressContainer.classList.add('hidden');
-                progressBar.style.width = '0%';
-            };
-
+            img.onerror = () => { showError('Error loading image for conversion.'); convertButton.disabled = false; progressContainer.classList.add('hidden'); progressBar.style.width = '0%'; };
+            reader.onerror = () => { showError('Error reading file for conversion.'); convertButton.disabled = false; progressContainer.classList.add('hidden'); progressBar.style.width = '0%'; };
             reader.readAsDataURL(currentFile);
         });
         toggleQualitySlider();
