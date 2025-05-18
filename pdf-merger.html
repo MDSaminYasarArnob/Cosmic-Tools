@@ -90,8 +90,15 @@
     <div class="starry-bg"></div>
     <header class="bg-opacity-90 bg-gray-900 shadow-lg">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <h1 class="text-4xl font-bold text-white">Cosmic Tools - PDF Merger 🔗</h1>
-            <p class="mt-2 text-lg text-gray-300">Combine multiple PDFs with image optimization</p>
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-4xl font-bold text-white">Cosmic Tools - PDF Merger 🔗</h1>
+                    <p class="mt-2 text-lg text-gray-300">Combine multiple PDFs with image optimization</p>
+                </div>
+                <a href="Cosmic-Tools/index.html" class="text-white text-lg font-bold gradient-button py-2 px-4 rounded-md">
+                    ← Back to Tools
+                </a>
+            </div>
         </div>
     </header>
     <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
@@ -363,12 +370,15 @@
                     downloadLink.download = `merged-pdf-${Date.now()}.pdf`;
 
                     downloadLink.addEventListener('click', (e) => {
-                        if (!downloadLink.href) {
+                        if (!downloadLink.href || downloadLink.href === '#') { // Added check for '#'
                             e.preventDefault();
                             showError('Download failed. Try again.');
-                            console.log('Download link empty');
+                            console.log('Download link empty or invalid');
                         }
-                        setTimeout(() => URL.revokeObjectURL(url), 100);
+                        // No need to revoke URL here if it's used right away, 
+                        // but good practice if the link might persist.
+                        // Let's keep the original logic, assuming it was intentional.
+                        setTimeout(() => URL.revokeObjectURL(url), 100); 
                     }, { once: true });
 
                     mergeButton.disabled = false;
@@ -379,6 +389,7 @@
                 console.log('Merge error:', e);
                 mergeButton.disabled = false;
                 progressContainer.classList.add('hidden');
+                progressBar.style.width = '0%'; // Reset progress bar on error
             }
         });
 
@@ -391,20 +402,33 @@
 
         async function optimizeImage(image, quality) {
             // Simplified: Use Compressor.js for image optimization
-            return new Promise((resolve) => {
+            // This function expects 'image' to be a File or Blob object
+            // The current extractImages returns an empty array, so this won't be called with actual data
+            // If extractImages were to return actual image data (e.g., as Blobs), Compressor.js could process it.
+            console.log('Optimizing image (simplified)...');
+            if (!(image instanceof Blob) && !(image instanceof File)) {
+                console.log('optimizeImage: input is not a Blob/File, returning as is.');
+                return image; // Or handle error appropriately
+            }
+            return new Promise((resolve, reject) => { // Added reject
                 new Compressor(image, {
                     quality,
                     success(result) {
                         const img = new Image();
-                        img.src = URL.createObjectURL(result);
                         img.onload = () => {
                             resolve({ src: img.src, width: img.width, height: img.height });
-                            URL.revokeObjectURL(img.src);
+                            URL.revokeObjectURL(img.src); // Clean up object URL
                         };
+                        img.onerror = () => { // Handle image loading error
+                            console.error('Error loading optimized image to get dimensions.');
+                            reject(new Error('Error loading optimized image.'));
+                            URL.revokeObjectURL(img.src); // Clean up even on error
+                        };
+                        img.src = URL.createObjectURL(result);
                     },
                     error(err) {
                         console.log('Image optimization error:', err);
-                        resolve(image);
+                        reject(err); // Propagate error
                     }
                 });
             });
